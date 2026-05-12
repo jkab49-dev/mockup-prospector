@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{COMPANY}} — Agroalimentaire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest:      oklch(42% 0.13 145);
+      --forest-dark: oklch(28% 0.10 145);
+      --forest-pale: oklch(55% 0.11 145);
+      --earth:       oklch(60% 0.10 60);
+      --earth-pale:  oklch(75% 0.08 60);
+      --parchment:   oklch(96% 0.010 80);
+      --warm-white:  oklch(98% 0.005 80);
+      --ink:         oklch(18% 0.012 145);
+      --muted:       oklch(48% 0.025 145);
+      --rule:        oklch(88% 0.015 145);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--forest-dark); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; }
+    .nav-brand { font-family: 'Literata', serif; font-size: 1.25rem; font-weight: 700; color: var(--parchment); letter-spacing: 0.01em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: oklch(72% 0.05 145); text-decoration: none; font-size: 0.875rem; font-weight: 400; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--parchment); }
+    .nav-cta { border: 1px solid oklch(55% 0.06 145); color: var(--parchment); padding: 10px 24px; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--forest); }
+
+    .hero { height: 100vh; position: relative; display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 48px; background: var(--forest-dark); position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest-pale); margin-bottom: 24px; font-weight: 600; }
+    .hero h1 { font-family: 'Literata', serif; font-size: clamp(2.75rem, 6vw, 5.5rem); font-weight: 700; color: var(--parchment); line-height: 1.05; text-wrap: balance; margin-bottom: 28px; }
+    .hero h1 em { font-style: italic; font-weight: 400; color: var(--earth-pale); }
+    .hero-sub { color: oklch(70% 0.05 145); font-size: 1.0625rem; font-weight: 300; max-width: 46ch; margin-bottom: 48px; line-height: 1.7; }
+    .btn-primary { background: var(--earth); color: var(--warm-white); padding: 14px 36px; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--earth-pale); }
+    .hero-right { background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; }
+
+    /* PRODUITS — pas de grille uniforme : alternance */
+    .produits { padding: 120px 48px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--forest); font-weight: 600; margin-bottom: 12px; }
+    .produits h2 { font-family: 'Literata', serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 700; line-height: 1.15; text-wrap: balance; margin-bottom: 72px; max-width: 22ch; }
+    .produits h2 em { font-style: italic; color: var(--forest); }
+    .produit-rows { display: flex; flex-direction: column; }
+    .produit-row { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+    .produit-row:nth-child(odd) { grid-template-columns: 2fr 3fr; }
+    .produit-row:nth-child(even) { grid-template-columns: 3fr 2fr; }
+    .produit-row:last-child { border-bottom: 1px solid var(--rule); }
+    .produit-img { background-size: cover; background-position: center; min-height: 280px; }
+    .produit-img-1 { background-image: url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=800&q=80'); }
+    .produit-img-2 { background-image: url('https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80'); }
+    .produit-img-3 { background-image: url('https://images.unsplash.com/photo-1604430456551-b89437fc5cbf?auto=format&fit=crop&w=800&q=80'); }
+    .produit-content { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .produit-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--earth); font-weight: 600; margin-bottom: 16px; }
+    .produit-content h3 { font-family: 'Literata', serif; font-size: 1.625rem; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+    .produit-content p { color: var(--muted); font-size: 0.9375rem; max-width: 52ch; line-height: 1.7; }
+
+    /* ENGAGEMENT */
+    .engagement { background: var(--forest); padding: 100px 48px; display: grid; grid-template-columns: 2fr 3fr; gap: 80px; align-items: center; }
+    .engagement-stat { font-family: 'Literata', serif; font-size: clamp(5rem, 14vw, 10rem); font-weight: 700; color: oklch(98% 0.005 145); line-height: 0.85; }
+    .engagement-stat span { display: block; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 16px; font-family: 'Raleway', sans-serif; font-weight: 400; color: oklch(75% 0.06 145); }
+    .engagement-text { color: oklch(88% 0.04 145); }
+    .engagement-text h3 { font-family: 'Literata', serif; font-size: 1.75rem; font-weight: 600; color: var(--parchment); margin-bottom: 20px; }
+    .engagement-text p { max-width: 52ch; line-height: 1.7; margin-bottom: 16px; }
+
+    /* ORIGINE */
+    .origine { padding: 120px 48px; background: var(--parchment); display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: start; }
+    .origine h2 { font-family: 'Literata', serif; font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 700; line-height: 1.15; text-wrap: balance; margin-bottom: 28px; }
+    .origine p { color: var(--muted); font-size: 0.9375rem; max-width: 58ch; margin-bottom: 20px; line-height: 1.7; }
+    .origine-aside { background: var(--warm-white); padding: 40px; border-top: 3px solid var(--forest); }
+    .origin-item { margin-bottom: 28px; }
+    .origin-item strong { display: block; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest); margin-bottom: 6px; font-weight: 600; }
+    .origin-item span { font-size: 0.9rem; color: var(--muted); }
+
+    footer { background: var(--forest-dark); color: oklch(55% 0.05 145); padding: 64px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; }
+    .footer-brand { font-family: 'Literata', serif; font-size: 1.375rem; font-weight: 700; color: var(--parchment); margin-bottom: 12px; }
+    .footer-tagline { font-size: 0.875rem; max-width: 38ch; line-height: 1.6; }
+    footer h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: oklch(72% 0.05 145); margin-bottom: 20px; font-weight: 600; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 10px; }
+    footer a { color: oklch(50% 0.04 145); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    footer a:hover { color: var(--earth-pale); }
+    footer p { font-size: 0.875rem; margin-bottom: 10px; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 40px; border-top: 1px solid oklch(32% 0.05 145); display: flex; justify-content: space-between; font-size: 0.75rem; color: oklch(40% 0.04 145); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; height: auto; }
+      .hero-left { padding: 120px 20px 60px; }
+      .hero-right { height: 50vw; }
+      .produit-row, .produit-row:nth-child(even), .produit-row:nth-child(odd) { grid-template-columns: 1fr; }
+      .produit-img { min-height: 200px; }
+      .produit-content { padding: 40px 20px; }
+      .engagement, .origine { grid-template-columns: 1fr; }
+      .produits, .engagement, .origine, footer { padding: 80px 20px; }
+      footer { grid-template-columns: 1fr; gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">{{COMPANY}}</div>
+  <ul class="nav-links">
+    <li><a href="#produits">Produits</a></li>
+    <li><a href="#engagement">Notre démarche</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Nous contacter</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">{{CITY}} · {{COUNTRY}}</p>
+    <h1>De la terre à la table,<br><em>avec soin</em></h1>
+    <p class="hero-sub">{{COMPANY}} produit et transforme des aliments de qualité pour les consommateurs et les professionnels de {{COUNTRY}}.</p>
+    <a href="#produits" class="btn-primary">Découvrir nos produits</a>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
+<section class="produits" id="produits">
+  <p class="section-label">Nos productions</p>
+  <h2>Des <em>produits naturels</em>, cultivés avec méthode</h2>
+  <div class="produit-rows">
+    <div class="produit-row">
+      <div class="produit-img produit-img-1"></div>
+      <div class="produit-content">
+        <div class="produit-tag">Céréales & Légumineuses</div>
+        <h3>Riz, Mil & Sorgho de qualité certifiée</h3>
+        <p>Cultivés sur nos exploitations selon des pratiques agricoles durables. Conditionnés et livrés en sacs de 5 à 50 kg pour les professionnels et les ménages.</p>
+      </div>
+    </div>
+    <div class="produit-row">
+      <div class="produit-content">
+        <div class="produit-tag">Fruits & Légumes</div>
+        <h3>Maraîchage frais, récolté chaque semaine</h3>
+        <p>Tomates, oignons, gombo, aubergines africaines. Nos légumes sont livrés dans les 48h après récolte pour garantir fraîcheur et saveur.</p>
+      </div>
+      <div class="produit-img produit-img-2"></div>
+    </div>
+    <div class="produit-row">
+      <div class="produit-img produit-img-3"></div>
+      <div class="produit-content">
+        <div class="produit-tag">Produits transformés</div>
+        <h3>Huile, farine, condiments artisanaux</h3>
+        <p>Transformation locale des matières premières pour créer des produits à haute valeur ajoutée. Emballages adaptés à la distribution moderne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="engagement" id="engagement">
+  <div class="engagement-stat">8 ans<span>d'agriculture raisonnée</span></div>
+  <div class="engagement-text">
+    <h3>Une agriculture enracinée en {{COUNTRY}}</h3>
+    <p>{{COMPANY}} travaille avec des agriculteurs locaux qu'elle forme et accompagne. Nos méthodes respectent les sols, la biodiversité et les conditions de travail des producteurs.</p>
+    <p>Nous exportons une partie de notre production dans la sous-région, un gage de qualité reconnu au-delà de nos frontières.</p>
+  </div>
+</section>
+
+<section class="origine" id="contact">
+  <div>
+    <p class="section-label">Qui sommes-nous</p>
+    <h2>{{COMPANY}}, producteur et transformateur en {{COUNTRY}}</h2>
+    <p>Notre filière intégrée — de la production agricole à la commercialisation — nous permet de garantir la traçabilité complète de nos produits et des prix stables pour nos clients.</p>
+    <p>Services : {{SERVICES}}.</p>
+  </div>
+  <div class="origine-aside">
+    <div class="origin-item"><strong>Téléphone</strong><span>{{PHONE}}</span></div>
+    <div class="origin-item"><strong>Email</strong><span>{{EMAIL}}</span></div>
+    <div class="origin-item"><strong>Localisation</strong><span>{{CITY}}, {{COUNTRY}}</span></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-brand">{{COMPANY}}</div>
+    <p class="footer-tagline">Agroalimentaire local, qualité certifiée. De la terre à votre table en {{COUNTRY}}.</p>
+  </div>
+  <div>
+    <h4>Produits</h4>
+    <ul>
+      <li><a href="#">Céréales</a></li>
+      <li><a href="#">Légumes frais</a></li>
+      <li><a href="#">Produits transformés</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <p>{{PHONE}}</p>
+    <p>{{EMAIL}}</p>
+    <p>{{CITY}}, {{COUNTRY}}</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 {{COMPANY}}. Tous droits réservés.</span>
+    <span>Agroalimentaire · {{COUNTRY}}</span>
+  </div>
+</footer>
+</body>
+</html>

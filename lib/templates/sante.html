@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{COMPANY}} — Santé & Pharmacie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal:       oklch(48% 0.10 195);
+      --teal-dark:  oklch(32% 0.08 195);
+      --teal-pale:  oklch(62% 0.08 195);
+      --teal-wash:  oklch(95% 0.015 195);
+      --white:      oklch(98% 0.004 195);
+      --ink:        oklch(18% 0.012 195);
+      --muted:      oklch(50% 0.025 195);
+      --rule:       oklch(88% 0.012 195);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Epilogue', sans-serif; background: var(--white); color: var(--ink); line-height: 1.65; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; }
+    .nav-brand { font-family: 'Spectral', serif; font-size: 1.25rem; font-weight: 600; color: var(--teal-dark); letter-spacing: 0.01em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta { background: var(--teal); color: var(--white); padding: 10px 24px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--teal-dark); }
+
+    .hero { padding-top: 64px; display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 48px; }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; font-weight: 600; }
+    .hero h1 { font-family: 'Spectral', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; text-wrap: balance; margin-bottom: 28px; }
+    .hero h1 strong { font-weight: 600; color: var(--teal-dark); }
+    .hero-sub { color: var(--muted); font-size: 1.0625rem; max-width: 52ch; margin-bottom: 48px; line-height: 1.7; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--teal); color: var(--white); padding: 14px 32px; font-size: 0.9375rem; font-weight: 600; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .btn-text { color: var(--teal); font-size: 0.875rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .btn-text:hover { gap: 10px; }
+    .hero-img { background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; }
+
+    .trust-band { background: var(--teal-wash); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 40px 48px; display: flex; gap: 64px; align-items: center; }
+    .trust-item { display: flex; flex-direction: column; }
+    .trust-num { font-family: 'Spectral', serif; font-size: 2.25rem; font-weight: 600; color: var(--teal-dark); line-height: 1; }
+    .trust-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    .services { padding: 120px 48px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 12px; }
+    .services h2 { font-family: 'Spectral', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2; text-wrap: balance; margin-bottom: 64px; max-width: 22ch; }
+    .services h2 em { font-style: italic; color: var(--teal); }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); }
+    .service-cell { background: var(--white); padding: 48px 40px; }
+    .service-cell:first-child { background: var(--teal-dark); color: var(--white); }
+    .service-num { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--teal-pale); margin-bottom: 20px; text-transform: uppercase; font-weight: 600; }
+    .service-cell:first-child .service-num { color: oklch(70% 0.06 195); }
+    .service-title { font-family: 'Spectral', serif; font-size: 1.375rem; font-weight: 600; margin-bottom: 12px; line-height: 1.25; }
+    .service-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+    .service-cell:first-child .service-desc { color: oklch(80% 0.04 195); }
+
+    .about { padding: 120px 48px; background: var(--teal-dark); color: var(--white); display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: center; }
+    .about h2 { font-family: 'Spectral', serif; font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 300; line-height: 1.2; text-wrap: balance; margin-bottom: 28px; }
+    .about p { color: oklch(78% 0.04 195); line-height: 1.7; font-size: 0.9375rem; margin-bottom: 16px; max-width: 56ch; }
+    .about-aside { background: oklch(28% 0.07 195); padding: 48px; }
+    .about-aside h3 { font-family: 'Spectral', serif; font-size: 1.25rem; font-weight: 400; margin-bottom: 32px; color: oklch(90% 0.03 195); }
+    .contact-item { margin-bottom: 24px; }
+    .contact-item strong { display: block; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal-pale); margin-bottom: 6px; font-weight: 600; }
+    .contact-item span { font-size: 0.9rem; color: oklch(75% 0.04 195); }
+
+    .rdv { padding: 80px 48px; background: var(--teal-wash); display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .rdv h2 { font-family: 'Spectral', serif; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 300; max-width: 30ch; text-wrap: balance; }
+    .rdv h2 strong { font-weight: 600; color: var(--teal-dark); }
+
+    footer { background: var(--ink); color: oklch(55% 0.015 195); padding: 64px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; }
+    .footer-brand { font-family: 'Spectral', serif; font-size: 1.375rem; font-weight: 400; color: var(--white); margin-bottom: 12px; }
+    .footer-tagline { font-size: 0.875rem; max-width: 38ch; line-height: 1.6; }
+    footer h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: oklch(75% 0.01 195); margin-bottom: 20px; font-weight: 600; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 10px; }
+    footer a { color: oklch(50% 0.015 195); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    footer a:hover { color: var(--teal-pale); }
+    footer p { font-size: 0.875rem; margin-bottom: 10px; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 40px; border-top: 1px solid oklch(25% 0.01 195); display: flex; justify-content: space-between; font-size: 0.75rem; color: oklch(38% 0.01 195); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; } .hero-img { height: 40vh; order: -1; }
+      .hero-text { padding: 60px 20px; }
+      .trust-band { flex-wrap: wrap; gap: 32px; padding: 40px 20px; }
+      .services, .about, footer { padding: 80px 20px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; gap: 40px; }
+      .rdv { flex-direction: column; align-items: flex-start; padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">{{COMPANY}}</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#rdv" class="nav-cta">Prendre RDV</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">{{CITY}} · {{COUNTRY}}</p>
+    <h1>Votre santé mérite <strong>une attention sans compromis</strong></h1>
+    <p class="hero-sub">{{COMPANY}} réunit des professionnels de santé expérimentés pour vous offrir des soins de qualité, dans un cadre confortable et rassurant.</p>
+    <div class="hero-actions">
+      <a href="#rdv" class="btn-primary">Prendre rendez-vous</a>
+      <a href="#services" class="btn-text">Découvrir nos services →</a>
+    </div>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<div class="trust-band">
+  <div class="trust-item"><div class="trust-num">12</div><div class="trust-label">Années d'exercice</div></div>
+  <div class="trust-item"><div class="trust-num">8 000+</div><div class="trust-label">Patients suivis</div></div>
+  <div class="trust-item"><div class="trust-num">18</div><div class="trust-label">Praticiens spécialisés</div></div>
+  <div class="trust-item"><div class="trust-num">7j/7</div><div class="trust-label">Urgences disponibles</div></div>
+</div>
+
+<section class="services" id="services">
+  <p class="section-label">Nos spécialités</p>
+  <h2>Des soins <em>complets</em> sous un même toit</h2>
+  <div class="service-grid">
+    <div class="service-cell">
+      <div class="service-num">01 / Principal</div>
+      <div class="service-title">Médecine générale & Consultations</div>
+      <div class="service-desc">Suivi médical personnalisé, bilans de santé, certificats médicaux. Nos généralistes vous reçoivent sur rendez-vous ou en urgence.</div>
+    </div>
+    <div class="service-cell">
+      <div class="service-num">02 / Spécialité</div>
+      <div class="service-title">Pharmacie & Médicaments</div>
+      <div class="service-desc">Dispensation de médicaments, conseils pharmaceutiques, préparations magistrales. Ouvert 7j/7 avec pharmacien diplômé.</div>
+    </div>
+    <div class="service-cell">
+      <div class="service-num">03 / Diagnostic</div>
+      <div class="service-title">Laboratoire d'analyses</div>
+      <div class="service-desc">Biologie médicale complète, résultats en 24h, télétransmission possible. Matériel homologué et techniciens certifiés.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <p class="section-label" style="color: var(--teal-pale);">Notre engagement</p>
+    <h2>Une structure de santé à la hauteur des enjeux de {{COUNTRY}}</h2>
+    <p>{{COMPANY}} a été fondée pour répondre à un besoin criant : des soins de qualité, accessibles, dans un environnement professionnel. Nous accueillons des patients de toutes les catégories sociales, avec la même rigueur médicale.</p>
+    <p>Nos praticiens sont régulièrement formés aux nouvelles recommandations médicales. Nos équipements sont maintenus aux standards internationaux.</p>
+  </div>
+  <div class="about-aside">
+    <h3>Informations pratiques</h3>
+    <div class="contact-item"><strong>Téléphone</strong><span>{{PHONE}}</span></div>
+    <div class="contact-item"><strong>Email</strong><span>{{EMAIL}}</span></div>
+    <div class="contact-item"><strong>Adresse</strong><span>{{CITY}}, {{COUNTRY}}</span></div>
+    <div class="contact-item"><strong>Services</strong><span>{{SERVICES}}</span></div>
+  </div>
+</section>
+
+<section class="rdv" id="rdv">
+  <h2>Besoin d'un rendez-vous ? <strong>Contactez-nous directement.</strong></h2>
+  <a href="tel:{{PHONE}}" class="btn-primary">Appeler maintenant</a>
+</section>
+
+<footer id="contact">
+  <div>
+    <div class="footer-brand">{{COMPANY}}</div>
+    <p class="footer-tagline">Soins de qualité à {{CITY}}. Médecine, pharmacie, analyses médicales.</p>
+  </div>
+  <div>
+    <h4>Spécialités</h4>
+    <ul>
+      <li><a href="#">Médecine générale</a></li>
+      <li><a href="#">Pharmacie</a></li>
+      <li><a href="#">Laboratoire</a></li>
+      <li><a href="#">Urgences</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <p>{{PHONE}}</p>
+    <p>{{EMAIL}}</p>
+    <p>{{CITY}}, {{COUNTRY}}</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 {{COMPANY}}. Tous droits réservés.</span>
+    <span>Santé & Pharmacie · {{COUNTRY}}</span>
+  </div>
+</footer>
+</body>
+</html>

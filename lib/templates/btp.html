@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{COMPANY}} — BTP & Construction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amber:       oklch(50% 0.16 55);
+      --amber-dark:  oklch(35% 0.13 55);
+      --amber-light: oklch(63% 0.15 60);
+      --concrete:    oklch(96% 0.005 55);
+      --steel:       oklch(88% 0.008 55);
+      --graphite:    oklch(28% 0.01 55);
+      --ink:         oklch(16% 0.008 55);
+      --muted:       oklch(52% 0.02 55);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--concrete); color: var(--ink); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+    }
+    .nav-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.375rem; font-weight: 700; color: var(--concrete); letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-brand span { color: var(--amber); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: oklch(65% 0.01 55); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amber-light); }
+    .nav-cta { background: var(--amber); color: var(--ink); padding: 10px 24px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--amber-light); }
+
+    .hero { height: 100vh; position: relative; display: flex; align-items: flex-end; padding: 80px 48px; }
+    .hero-img { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center 30%; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--ink) 0%, oklch(16% 0.008 55 / 0.7) 50%, transparent 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 600px; }
+    .hero-tag { display: inline-block; background: var(--amber); color: var(--ink); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 14px; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 900; color: var(--concrete); line-height: 0.95; text-transform: uppercase; text-wrap: balance; margin-bottom: 24px; }
+    .hero-sub { color: oklch(75% 0.01 55); font-size: 1.0625rem; font-weight: 300; max-width: 48ch; margin-bottom: 40px; }
+    .hero-actions { display: flex; gap: 16px; }
+    .btn-primary { background: var(--amber); color: var(--ink); padding: 14px 32px; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--amber-light); }
+    .btn-outline { border: 1px solid oklch(55% 0.01 55); color: oklch(80% 0.01 55); padding: 14px 32px; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-outline:hover { border-color: var(--concrete); color: var(--concrete); }
+
+    .stats-band { background: var(--amber); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 48px 40px; border-right: 1px solid oklch(55% 0.14 55); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3.5rem; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.8125rem; font-weight: 500; color: var(--amber-dark); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .services { padding: 120px 48px; display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .services-intro h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 900; text-transform: uppercase; line-height: 1.05; text-wrap: balance; margin-bottom: 28px; }
+    .services-intro p { color: var(--muted); max-width: 45ch; }
+    .service-list { display: flex; flex-direction: column; }
+    .service-row { display: grid; grid-template-columns: 64px 1fr; gap: 32px; padding: 36px 0; border-top: 1px solid var(--steel); align-items: start; }
+    .service-row:last-child { border-bottom: 1px solid var(--steel); }
+    .service-row-num { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--amber); padding-top: 2px; }
+    .service-row h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.375rem; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+    .service-row p { color: var(--muted); font-size: 0.9375rem; }
+
+    .flagship { background: var(--graphite); padding: 120px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .flagship-img { background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; height: 440px; }
+    .flagship-text .section-label { color: var(--amber-light); }
+    .flagship-text h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; text-transform: uppercase; color: var(--concrete); text-wrap: balance; line-height: 1.05; margin-bottom: 24px; }
+    .flagship-text p { color: oklch(65% 0.01 55); line-height: 1.7; margin-bottom: 16px; max-width: 52ch; }
+
+    .about { padding: 120px 48px; background: var(--steel); }
+    .about h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 900; text-transform: uppercase; text-wrap: balance; margin-bottom: 32px; }
+    .about-cols { display: grid; grid-template-columns: 3fr 2fr; gap: 64px; }
+    .about-cols p { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 16px; }
+    .contact-block { background: var(--concrete); padding: 40px; }
+    .contact-block h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
+    .contact-line { margin-bottom: 16px; font-size: 0.9rem; color: var(--muted); }
+    .contact-line strong { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber-dark); margin-bottom: 4px; }
+
+    footer { background: var(--ink); color: oklch(55% 0.01 55); padding: 64px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; }
+    .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; color: var(--concrete); margin-bottom: 12px; }
+    .footer-brand span { color: var(--amber); }
+    .footer-tagline { font-size: 0.875rem; max-width: 38ch; line-height: 1.6; }
+    footer h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--concrete); margin-bottom: 20px; font-weight: 600; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 10px; }
+    footer a { color: oklch(50% 0.01 55); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    footer a:hover { color: var(--amber-light); }
+    footer p { font-size: 0.875rem; margin-bottom: 10px; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 40px; border-top: 1px solid oklch(25% 0.005 55); display: flex; justify-content: space-between; font-size: 0.75rem; color: oklch(38% 0.008 55); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .hero { padding: 80px 20px 60px; } .hero-overlay { background: oklch(16% 0.008 55 / 0.85); }
+      .stats-band { grid-template-columns: 1fr 1fr; } .stat-item { border-right: none; border-bottom: 1px solid oklch(55% 0.14 55); }
+      .services, .flagship, .about-cols { grid-template-columns: 1fr; }
+      .flagship-img { height: 280px; }
+      .services, .flagship, .about, footer { padding: 80px 20px; }
+      footer { grid-template-columns: 1fr; gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">{{COMPANY}}<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projets">Réalisations</a></li>
+    <li><a href="#about">Société</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Devis gratuit</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">{{CITY}} · {{COUNTRY}}</div>
+    <h1>Bâtir<br>l'avenir</h1>
+    <p class="hero-sub">{{COMPANY}} construit et rénove avec rigueur et excellence. Des fondations aux finitions, nous livrons ce que nous promettons.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Demander un devis</a>
+      <a href="#projets" class="btn-outline">Nos réalisations</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Années d'expérience</div></div>
+  <div class="stat-item"><div class="stat-num">240</div><div class="stat-label">Projets livrés</div></div>
+  <div class="stat-item"><div class="stat-num">85</div><div class="stat-label">Experts qualifiés</div></div>
+  <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Clients satisfaits</div></div>
+</div>
+
+<section class="services" id="services">
+  <div class="services-intro">
+    <p class="section-label">Ce que nous faisons</p>
+    <h2>Construction, génie civil et rénovation</h2>
+    <p>De la conception à la livraison clés en main, nos équipes interviennent sur tous types de chantiers en {{COUNTRY}}.</p>
+  </div>
+  <div class="service-list">
+    <div class="service-row"><div class="service-row-num">01</div><div><h3>Construction neuve</h3><p>Villas, immeubles résidentiels, bâtiments commerciaux. De A à Z.</p></div></div>
+    <div class="service-row"><div class="service-row-num">02</div><div><h3>Rénovation & Réhabilitation</h3><p>Modernisation, mise aux normes, ravalement de façades et aménagements intérieurs.</p></div></div>
+    <div class="service-row"><div class="service-row-num">03</div><div><h3>Génie civil & Infrastructures</h3><p>Routes, ponts, réseaux VRD. Nos ingénieurs maîtrisent les contraintes du terrain africain.</p></div></div>
+    <div class="service-row"><div class="service-row-num">04</div><div><h3>Études & Maîtrise d'œuvre</h3><p>Bureau d'études intégré, plans d'exécution, suivi de chantier et réception.</p></div></div>
+  </div>
+</section>
+
+<section class="flagship" id="projets">
+  <div class="flagship-img"></div>
+  <div class="flagship-text">
+    <p class="section-label">Réalisation phare</p>
+    <h2>Complexe résidentiel Grand Standing</h2>
+    <p>48 appartements haut de gamme livrés en 18 mois à {{CITY}}. Structure béton armé, finitions européennes, gestion complète.</p>
+    <a href="#contact" class="btn-primary" style="margin-top: 32px;">Discuter de votre projet</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <p class="section-label">La société</p>
+  <h2>{{COMPANY}}, solidement ancrée en {{COUNTRY}}</h2>
+  <div class="about-cols">
+    <div>
+      <p>Fondée par des ingénieurs formés en Europe et en Afrique, {{COMPANY}} a bâti sa réputation sur la qualité de ses livrables et le respect de ses engagements contractuels.</p>
+      <p>Certifiés ISO 9001, nous travaillons avec les meilleures entreprises de {{COUNTRY}} et intervenons sur l'ensemble du territoire. Services : {{SERVICES}}.</p>
+    </div>
+    <div class="contact-block">
+      <h3>Nous contacter</h3>
+      <div class="contact-line"><strong>Téléphone</strong>{{PHONE}}</div>
+      <div class="contact-line"><strong>Email</strong>{{EMAIL}}</div>
+      <div class="contact-line"><strong>Siège</strong>{{CITY}}, {{COUNTRY}}</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div>
+    <div class="footer-brand">{{COMPANY}}<span>.</span></div>
+    <p class="footer-tagline">Construction & Génie Civil en {{COUNTRY}}. Qualité, rigueur, délais tenus.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#">Construction neuve</a></li>
+      <li><a href="#">Rénovation</a></li>
+      <li><a href="#">Génie civil</a></li>
+      <li><a href="#">Études techniques</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <p>{{PHONE}}</p>
+    <p>{{EMAIL}}</p>
+    <p>{{CITY}}, {{COUNTRY}}</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 {{COMPANY}}. Tous droits réservés.</span>
+    <span>BTP & Construction · {{COUNTRY}}</span>
+  </div>
+</footer>
+</body>
+</html>

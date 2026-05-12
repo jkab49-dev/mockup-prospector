@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>La Gabonnaise — Hôtel & Spa à Port-Gentil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="La Gabonnaise, hôtel de prestige à Port-Gentil, Gabon. Hébergement, restauration, spa et salles de conférence face à l'estuaire.">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       TOKENS COULEUR — OKLCH UNIQUEMENT
+    ============================================ */
+    :root {
+      /* Marque principale #005A82 → oklch */
+      --brand-deep:       oklch(38% 0.085 228);
+      --brand-mid:        oklch(44% 0.095 228);
+      --brand-light:      oklch(62% 0.075 228);
+      --brand-pale:       oklch(92% 0.018 228);
+
+      /* Terracotta chaud — accent engagé */
+      --accent-terra:     oklch(52% 0.13 38);
+      --accent-terra-dim: oklch(45% 0.11 38);
+      --accent-gold:      oklch(72% 0.10 68);
+
+      /* Neutres teintés crème-chaud */
+      --surface-0:        oklch(97% 0.009 68);
+      --surface-1:        oklch(94% 0.012 68);
+      --surface-2:        oklch(88% 0.014 68);
+
+      /* Textes */
+      --text-rich:        oklch(18% 0.022 228);
+      --text-body:        oklch(32% 0.018 228);
+      --text-muted:       oklch(52% 0.012 228);
+      --text-inverse:     oklch(97% 0.006 68);
+
+      /* Sombre footer */
+      --ink-deep:         oklch(14% 0.025 228);
+
+      /* Typographie */
+      --font-display: 'Bodoni Moda', Georgia, serif;
+      --font-body:    'Nunito Sans', system-ui, sans-serif;
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--text-body);
+      background-color: var(--surface-0);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      background-color: var(--brand-deep);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      border-bottom: 1px solid oklch(48% 0.09 228);
+    }
+
+    .nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-inverse);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .nav__logo span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-gold);
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav__links li a {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: oklch(80% 0.02 228);
+      transition: color 0.2s;
+    }
+
+    .nav__links li a:hover {
+      color: var(--accent-gold);
+    }
+
+    .btn-nav {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-rich);
+      background-color: var(--accent-gold);
+      padding: 10px 22px;
+      transition: background-color 0.2s, transform 0.15s;
+    }
+
+    .btn-nav:hover {
+      background-color: oklch(78% 0.12 68);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       HERO — 100VH PHOTO PLEIN ÉCRAN
+    ============================================ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    /* Overlay bicouche : couleur de marque en bas-gauche */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          135deg,
+          oklch(28% 0.09 228 / 0.88) 0%,
+          oklch(28% 0.09 228 / 0.55) 45%,
+          oklch(28% 0.09 228 / 0.12) 100%
+        );
+    }
+
+    .hero__content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      padding: 0 48px 80px;
+    }
+
+    .hero__text {
+      grid-column: 1 / 8;
+    }
+
+    .hero__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero__eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background-color: var(--accent-gold);
+    }
+
+    .hero__h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.06;
+      color: var(--text-inverse);
+      text-wrap: balance;
+      margin-bottom: 24px;
+    }
+
+    .hero__h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-gold);
+    }
+
+    .hero__sub {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: oklch(90% 0.012 228);
+      max-width: 50ch;
+      margin-bottom: 36px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-rich);
+      background-color: var(--accent-gold);
+      padding: 16px 36px;
+      transition: background-color 0.2s, transform 0.15s;
+    }
+
+    .btn-hero:hover {
+      background-color: oklch(78% 0.12 68);
+      transform: translateY(-2px);
+    }
+
+    .hero__aside {
+      grid-column: 9 / 13;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 8px;
+    }
+
+    .hero__detail {
+      background-color: oklch(38% 0.085 228 / 0.75);
+      padding: 28px 24px;
+      border-top: 2px solid var(--accent-gold);
+    }
+
+    .hero__detail-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .hero__detail-value {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-inverse);
+      line-height: 1.2;
+    }
+
+    .hero__detail-desc {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: oklch(80% 0.015 228);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* Scroll indicator */
+    .hero__scroll {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero__scroll-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: oklch(70% 0.015 228);
+      writing-mode: vertical-rl;
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--accent-gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.7); }
+    }
+
+    /* ============================================
+       BANDE SERVICES HORIZONTALE (dense)
+    ============================================ */
+    .services-strip {
+      background-color: var(--surface-1);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .services-strip__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .strip-item {
+      padding: 48px 36px;
+      position: relative;
+      transition: background-color 0.25s;
+    }
+
+    .strip-item:not(:last-child) {
+      border-right: 1px solid var(--surface-2);
+    }
+
+    .strip-item:hover {
+      background-color: var(--surface-2);
+    }
+
+    .strip-item__num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--surface-2);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.25s;
+    }
+
+    .strip-item:hover .strip-item__num {
+      color: oklch(85% 0.02 228);
+    }
+
+    .strip-item__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-rich);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .strip-item__desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 28ch;
+    }
+
+    .strip-item__tag {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-mid);
+    }
+
+    /* ============================================
+       SECTION SERVICES — LAYOUT ALTERNÉ ASYMÉTRIQUE
+    ============================================ */
+    .services-main {
+      padding: 120px 0;
+      background-color: var(--surface-0);
+    }
+
+    .services-main__header {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      padding: 0 48px;
+      margin-bottom: 72px;
+    }
+
+    .services-main__label {
+      grid-column: 1 / 3;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-terra);
+      padding-top: 8px;
+    }
+
+    .services-main__h2 {
+      grid-column: 3 / 9;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-rich);
+      text-wrap: balance;
+    }
+
+    .services-main__intro {
+      grid-column: 9 / 13;
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 38ch;
+      align-self: end;
+    }
+
+    /* Service 1 : Hébergement — texte gauche large, photo droite */
+    .service-block {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 0;
+      margin-bottom: 2px;
+    }
+
+    .service-block--reverse .service-block__text {
+      order: 2;
+    }
+    .service-block--reverse .service-block__visual {
+      order: 1;
+    }
+
+    .service-block__text {
+      grid-column: 1 / 6;
+      background-color: var(--brand-deep);
+      padding: 72px 56px 72px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .service-block--light .service-block__text {
+      background-color: var(--surface-1);
+    }
+
+    .service-block__num {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+    }
+
+    .service-block--light .service-block__num {
+      color: var(--accent-terra);
+    }
+
+    .service-block__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-inverse);
+      text-wrap: balance;
+      margin-bottom: 20px;
+    }
+
+    .service-block--light .service-block__title {
+      color: var(--text-rich);
+    }
+
+    .service-block__body {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: oklch(80% 0.015 228);
+      max-width: 42ch;
+      margin-bottom: 28px;
+    }
+
+    .service-block--light .service-block__body {
+      color: var(--text-muted);
+    }
+
+    .service-block__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      transition: gap 0.2s;
+    }
+
+    .service-block--light .service-block__link {
+      color: var(--brand-mid);
+    }
+
+    .service-block__link:hover {
+      gap: 16px;
+    }
+
+    .service-block__link::after {
+      content: '→';
+      font-size: 1rem;
+    }
+
+    .service-block__visual {
+      grid-column: 6 / 13;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .service-block--reverse .service-block__text {
+      grid-column: 7 / 13;
+    }
+
+    .service-block--reverse .service-block__visual {
+      grid-column: 1 / 7;
+    }
+
+    .service-block__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .service-block:hover .service-block__visual img {
+      transform: scale(1.04);
+    }
+
+    /* ============================================
+       SECTION CONFIANCE — STAT UNIQUE FORTE
+    ============================================ */
+    .trust {
+      background-color: var(--brand-deep);
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background-color: oklch(44% 0.095 228 / 0.35);
+      pointer-events: none;
+    }
+
+    .trust::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 15%;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background-color: oklch(52% 0.13 38 / 0.12);
+      pointer-events: none;
+    }
+
+    .trust__big {
+      grid-column: 1 / 6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .trust__number {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 12vw, 10rem);
+      font-weight: 700;
+      color: var(--text-inverse);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .trust__number sup {
+      font-size: 0.3em;
+      vertical-align: super;
+      color: var(--accent-gold);
+    }
+
+    .trust__unit {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 400;
+      color: var(--accent-gold);
+      margin-top: 8px;
+    }
+
+    .trust__divider {
+      grid-column: 6 / 7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .trust__divider-line {
+      width: 1px;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--accent-gold), transparent);
+    }
+
+    .trust__content {
+      grid-column: 7 / 12;
+      position: relative;
+      z-index: 1;
+    }
+
+    .trust__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 16px;
+    }
+
+    .trust__quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--text-inverse);
+      text-wrap: balance;
+      margin-bottom: 24px;
+    }
+
+    .trust__author {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: oklch(72% 0.018 228);
+    }
+
+    .trust__author strong {
+      font-weight: 600;
+      color: oklch(85% 0.02 228);
+    }
+
+    /* ============================================
+       À PROPOS — 60/40 ASYMÉTRIQUE
+    ============================================ */
+    .about {
+      padding: 120px 0 0;
+      background-color: var(--surface-0);
+      overflow: hidden;
+    }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+    }
+
+    .about__text {
+      padding: 80px 64px 80px 48px;
+    }
+
+    .about__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-terra);
+      margin-bottom: 28px;
+    }
+
+    .about__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background-color: var(--accent-terra);
+    }
+
+    .about__h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-rich);
+      text-wrap: balance;
+      margin-bottom: 32px;
+    }
+
+    .about__h2 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brand-mid);
+    }
+
+    .about__body {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text-body);
+      max-width: 62ch;
+      margin-bottom: 20px;
+    }
+
+    .about__body + .about__body {
+      color: var(--text-muted);
+    }
+
+    .about__details {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 40px;
+    }
+
+    .about__detail-item dt {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-terra);
+      margin-bottom: 4px;
+    }
+
+    .about__detail-item dd {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-rich);
+    }
+
+    .about__visual {
+      position: relative;
+      background-color: var(--brand-deep);
+      overflow: hidden;
+    }
+
+    .about__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      mix-blend-mode: luminosity;
+    }
+
+    .about__visual-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: oklch(38% 0.085 228 / 0.65);
+    }
+
+    .about__visual-text {
+      position: absolute;
+      bottom: 48px;
+      left: 40px;
+      right: 40px;
+    }
+
+    .about__visual-big {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text-inverse);
+    }
+
+    .about__visual-caption {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: oklch(80% 0.015 228);
+      margin-top: 8px;
+    }
+
+    /* Bande géographique */
+    .about__geo {
+      background-color: var(--accent-terra);
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .about__geo-text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-inverse);
+    }
+
+    .about__geo-dot {
+      width: 4px;
+      height: 4px;
+      background-color: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    /* ============================================
+       RESERVATION CTA — PLEIN FOND TERRACOTTA
+    ============================================ */
+    .cta-section {
+      padding: 100px 48px;
+      background-color: var(--accent-terra-dim);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      align-items: center;
+    }
+
+    .cta-section__text {
+      grid-column: 1 / 8;
+    }
+
+    .cta-section__h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text-inverse);
+      text-wrap: balance;
+      margin-bottom: 16px;
+    }
+
+    .cta-section__sub {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: oklch(92% 0.01 38);
+      max-width: 55ch;
+    }
+
+    .cta-section__actions {
+      grid-column: 9 / 13;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .btn-cta-primary {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-rich);
+      background-color: var(--accent-gold);
+      padding: 16px 36px;
+      transition: background-color 0.2s, transform 0.15s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-cta-primary:hover {
+      background-color: oklch(78% 0.12 68);
+      transform: translateY(-2px);
+    }
+
+    .btn-cta-secondary {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-inverse);
+      padding: 14px 36px;
+      border: 1px solid oklch(75% 0.07 38);
+      width: 100%;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+
+    .btn-cta-secondary:hover {
+      background-color: oklch(48% 0.11 38 / 0.4);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      background-color: var(--ink-deep);
+      padding: 72px 48px 40px;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      column-gap: 64px;
+      margin-bottom: 56px;
+    }
+
+    .footer__brand {}
+
+    .footer__logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-inverse);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+
+    .footer__tagline {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: oklch(55% 0.018 228);
+      max-width: 36ch;
+      margin-bottom: 24px;
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer__social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: oklch(20% 0.028 228);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: oklch(60% 0.02 228);
+      text-transform: uppercase;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .footer__social a:hover {
+      background-color: var(--brand-mid);
+      color: var(--text-inverse);
+    }
+
+    .footer__nav-title,
+    .footer__contact-title {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+    }
+
+    .footer__nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__nav-links a {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: oklch(55% 0.018 228);
+      transition: color 0.2s;
+    }
+
+    .footer__nav-links a:hover {
+      color: oklch(80% 0.02 228);
+    }
+
+    .footer__contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer__contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .footer__contact-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: oklch(42% 0.02 228);
+    }
+
+    .footer__contact-value {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: oklch(72% 0.018 228);
+      transition: color 0.2s;
+    }
+
+    .footer__contact-value:hover {
+      color: var(--accent-gold);
+    }
+
+    .footer__bottom {
+      padding-top: 28px;
+      border-top: 1px solid oklch(22% 0.025 228);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: oklch(38% 0.015 228);
+    }
+
+    .footer__copy strong {
+      font-weight: 600;
+      color: oklch(48% 0.02 228);
+    }
+
+    .footer__badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: oklch(35% 0.018 228);
+    }
+
+    /* ============================================
+       RESPONSIVE PARTIEL (breakpoints clés)
+    ============================================ */
+    @media (max-width: 1024px) {
+      .nav {
+        padding: 0 24px;
+      }
+
+      .nav__links {
+        gap: 20px;
+      }
+
+      .hero__content {
+        padding: 0 24px 60px;
+      }
+
+      .hero__text {
+        grid-column: 1 / 10;
+      }
+
+      .hero__aside {
+        display: none;
+      }
+
+      .services-strip__inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-strip__inner .strip-item:nth-child(1),
+      .services-strip__inner .strip-item:nth-child(3) {
+        border-right: 1px solid var(--surface-2);
+      }
+
+      .services-strip__inner .strip-item:nth-child(2) {
+        border-right: none;
+      }
+
+      .services-main__header {
+        padding: 0 24px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .services-main__label,
+      .services-main__h2,
+      .services-main__intro {
+        grid-column: 1 / -1;
+      }
+
+      .service-block {
+        grid-template-columns: 1fr;
+      }
+
+      .service-block__text,
+      .service-block__visual,
+      .service-block--reverse .service-block__text,
+      .service-block--reverse .service-block__visual {
+        grid-column: 1 / -1;
+        order: unset;
+      }
+
+      .service-block__visual {
+        min-height: 280px;
+      }
+
+      .service-block--reverse .service-block__visual {
+        order: -1;
+      }
+
+      .trust {
+        padding: 80px 24px;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .trust__big,
+      .trust__divider,
+      .trust__content {
+        grid-column: 1 / -1;
+      }
+
+      .trust__divider {
+        display: none;
+      }
+
+      .about__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .about__text {
+        padding: 60px 24px;
+      }
+
+      .about__visual {
+        min-height: 320px;
+      }
+
+      .about__geo {
+        padding: 20px 24px;
+      }
+
+      .cta-section {
+        padding: 80px 24px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .cta-section__text,
+      .cta-section__actions {
+        grid-column: 1 / -1;
+      }
+
+      .cta-section__actions {
+        flex-direction: row;
+      }
+
+      .btn-cta-primary,
+      .btn-cta-secondary {
+        width: auto;
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .footer__brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer {
+        padding: 56px 24px 32px;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav__links {
+        display: none;
+      }
+
+      .services-strip__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .strip-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--surface-2);
+      }
+
+      .about__details {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section__actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-cta-primary,
+      .btn-cta-secondary {
+        width: 100%;
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__scroll {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+  ============================================ -->
+  <nav class="nav" id="accueil">
+    <div class="nav__logo">
+      La Gabonnaise<span></span>
+    </div>
+    <ul class="nav__links">
+      <li><a href="#chambres">Chambres</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#restaurant">Restaurant</a></li>
+      <li><a href="#a-propos">L'Hôtel</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#reservation" class="btn-nav">Réserver</a>
+  </nav>
+
+  <!-- ============================================
+       HERO — Photo plein écran, coucher de soleil
+  ============================================ -->
+  <section class="hero" id="hero">
+    <img
+      class="hero__bg"
+      src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80"
+      alt="Chambre d'hôtel luxueuse baignée de lumière dorée au coucher du soleil à travers de grandes baies vitrées"
+      loading="eager"
+      fetchpriority="high"
+    >
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <div class="hero__text">
+        <p class="hero__eyebrow">Port-Gentil · Gabon</p>
+        <h1 class="hero__h1">
+          L'élégance <em>gabonaise</em><br>à son sommet
+        </h1>
+        <p class="hero__sub">
+          Face à l'estuaire du Komo, La Gabonnaise réunit le calme de l'Afrique équatoriale et l'exigence d'une hospitalité sans compromis.
+        </p>
+        <a href="#reservation" class="btn-hero">Réserver votre séjour</a>
+      </div>
+
+      <div class="hero__aside">
+        <div class="hero__detail">
+          <p class="hero__detail-label">Disponibilité ce soir</p>
+          <p class="hero__detail-value">Vue sur l'estuaire</p>
+          <p class="hero__detail-desc">Suites avec baies vitrées panoramiques — coucher de soleil garanti</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-text">Découvrir</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BANDE SERVICES — Dense, 4 piliers
+  ============================================ -->
+  <section class="services-strip" id="services" aria-label="Vue d'ensemble de nos services">
+    <div class="services-strip__inner">
+
+      <div class="strip-item">
+        <div class="strip-item__num" aria-hidden="true">01</div>
+        <h3 class="strip-item__title">Hébergement</h3>
+        <p class="strip-item__desc">Chambres et suites conçues pour le repos profond, avec vue sur l'estuaire ou les jardins.</p>
+        <a href="#chambres" class="strip-item__tag">Explorer les chambres</a>
+      </div>
+
+      <div class="strip-item">
+        <div class="strip-item__num" aria-hidden="true">02</div>
+        <h3 class="strip-item__title">Restaurant</h3>
+        <p class="strip-item__desc">Cuisine gabonaise revisitée — poissons de l'Ogooué, épices locales, terrasse panoramique.</p>
+        <a href="#restaurant" class="strip-item__tag">Voir la carte</a>
+      </div>
+
+      <div class="strip-item">
+        <div class="strip-item__num" aria-hidden="true">03</div>
+        <h3 class="strip-item__title">Spa & Bien-être</h3>
+        <p class="strip-item__desc">Soins inspirés des traditions de la forêt équatoriale, hammam et piscine d'eau douce.</p>
+        <a href="#spa" class="strip-item__tag">Prendre soin de soi</a>
+      </div>
+
+      <div class="strip-item">
+        <div class="strip-item__num" aria-hidden="true">04</div>
+        <h3 class="strip-item__title">Conférences</h3>
+        <p class="strip-item__desc">Salle modulable jusqu'à 180 personnes, équipement AV complet, équipe événementielle dédiée.</p>
+        <a href="#seminaires" class="strip-item__tag">Demander un devis</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION SERVICES — Layout alterné
+  ============================================ -->
+  <section class="services-main" id="chambres" aria-labelledby="services-h2">
+
+    <div class="services-main__header">
+      <p class="services-main__label">Nos prestations</p>
+      <h2 class="services-main__h2" id="services-h2">
+        Chaque espace conçu pour dépasser l'attente
+      </h2>
+      <p class="services-main__intro">
+        De la suite d'affaires à la table du chef, chaque détail porte l'identité de Port-Gentil — ouverte sur l'Atlantique, ancrée dans le Gabon.
+      </p>
+    </div>
+
+    <!-- Bloc 1 : Hébergement -->
+    <div class="service-block" id="chambres-detail">
+      <div class="service-block__text">
+        <p class="service-block__num">Hébergement — 01</p>
+        <h3 class="service-block__title">Des chambres taillées pour le repos et la sérénité</h3>
+        <p class="service-block__body">
+          Chaque chambre de La Gabonnaise est orientée pour capter la lumière de l'estuaire. Literie haut de gamme, boiseries locales en okoumé, climatisation silencieuse — le confort n'y est pas un luxe, c'est une promesse.
+        </p>
+        <a href="#reservation" class="service-block__link">Voir les disponibilités</a>
+      </div>
+      <div class="service-block__visual">
+        <img
+          src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80"
+          alt="Chambre d'hôtel avec grande fenêtre donnant sur le coucher de soleil, literie blanche immaculée et boiseries chaudes"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+    <!-- Bloc 2 : Restaurant -->
+    <div class="service-block service-block--light service-block--reverse" id="restaurant">
+      <div class="service-block__text">
+        <p class="service-block__num">Restaurant — 02</p>
+        <h3 class="service-block__title">La table du Gabon, réinventée chaque soir</h3>
+        <p class="service-block__body">
+          Notre chef puise dans les marchés de Port-Gentil et les saveurs de la forêt équatoriale. Nyembwe de poisson, plantain caramélisé, safou confit — une gastronomie qui raconte un territoire.
+        </p>
+        <a href="#restaurant" class="service-block__link">Voir la carte</a>
+      </div>
+      <div class="service-block__visual">
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80"
+          alt="Table de restaurant élégamment dressée avec lumière tamisée et assiettes de cuisine africaine raffinée"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+    <!-- Bloc 3 : Conférences -->
+    <div class="service-block" id="seminaires">
+      <div class="service-block__text">
+        <p class="service-block__num">Conférences — 04</p>
+        <h3 class="service-block__title">Port-Gentil comme scène de vos événements</h3>
+        <p class="service-block__body">
+          La salle principale accueille séminaires, assemblées et lancements de produits dans un cadre sans équivalent dans la région. Wi-Fi haut débit, sonorisation professionnelle, pauses traiteur sur mesure.
+        </p>
+        <a href="#contact" class="service-block__link">Demander un devis</a>
+      </div>
+      <div class="service-block__visual">
+        <img
+          src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80"
+          alt="Salle de conférence moderne aménagée en configuration théâtre avec équipement audiovisuel professionnel"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================
+       CONFIANCE — Stat unique forte
+  ============================================ -->
+  <section class="trust" aria-label="Témoignage client et chiffre clé">
+
+    <div class="trust__big">
+      <div class="trust__number">14<sup>ans</sup></div>
+      <div class="trust__unit">d'excellence</div>
+    </div>
+
+    <div class="trust__divider" aria-hidden="true">
+      <div class="trust__divider-line"></div>
+    </div>
+
+    <div class="trust__content">
+      <p class="trust__label">Témoignage voyageur</p>
+      <blockquote class="trust__quote">
+        « La Gabonnaise est l'un des rares endroits en Afrique centrale où le service rivalise avec les grandes adresses de Lagos ou Abidjan — mais avec l'âme du Gabon en plus. »
+      </blockquote>
+      <p class="trust__author">
+        <strong>Madeleine Owona</strong> — Directrice régionale, Port-Gentil
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ============================================
+       À PROPOS — 60/40 Asymétrique
+  ============================================ -->
+  <section class="about" id="a-propos">
+    <div class="about__inner">
+
+      <div class="about__text">
+        <p class="about__eyebrow">À propos</p>
+        <h2 class="about__h2">
+          Née à Port-Gentil,<br>
+          <em>ancrée dans l'âme du Gabon</em>
+        </h2>
+        <p class="about__body">
+          La Gabonnaise a ouvert ses portes dans la capitale économique du Gabon avec une conviction : que l'hospitalité africaine n'a pas à imiter. Elle doit affirmer. Depuis 2010, notre établissement accueille cadres pétroliers, diplomates et voyageurs d'agrément dans un cadre où les matériaux locaux — okoumé, raphia, pierres de l'Ogooué — dialoguent avec un design contemporain assumé.
+        </p>
+        <p class="about__body">
+          Port-Gentil n'est pas une ville de transit. C'est une ville de caractère, tournée vers l'Atlantique, rythmée par le fleuve et la forêt équatoriale. Nous voulons que chaque client repart avec cette conviction.
+        </p>
+
+        <dl class="about__details">
+          <div class="about__detail-item">
+            <dt>Situation</dt>
+            <dd>Port-Gentil, Gabon</dd>
+          </div>
+          <div class="about__detail-item">
+            <dt>Ouverture</dt>
+            <dd>2010</dd>
+          </div>
+          <div class="about__detail-item">
+            <dt>Capacité</dt>
+            <dd>62 chambres & suites</dd>
+          </div>
+          <div class="about__detail-item">
+            <dt>Classement</dt>
+            <dd>4 étoiles</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="about__visual">
+        <img
+          src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=800&q=80"
+          alt="Coucher de soleil sur l'estuaire du Gabon, reflets orange et or sur l'eau calme avec végétation équatoriale en silhouette"
+          loading="lazy"
+        >
+        <div class="about__visual-overlay"></div>
+        <div class="about__visual-text">
+          <div class="about__visual-big">0°S</div>
+          <p class="about__visual-caption">Équateur — à 8 km de l'Atlantique</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="about__geo" aria-label="Localisation géographique">
+      <p class="about__geo-text">Port-Gentil, Gabon</p>
+      <div class="about__geo-dot" aria-hidden="true"></div>
+      <p class="about__geo-text">Océan Atlantique — Delta de l'Ogooué</p>
+      <div class="about__geo-dot" aria-hidden="true"></div>
+      <p class="about__geo-text">0°43' S — 8°47' E</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA RÉSERVATION
+  ============================================ -->
+  <section class="cta-section" id="reservation" aria-labelledby="cta-h2">
+
+    <div class="cta-section__text">
+      <h2 class="cta-section__h2" id="cta-h2">
+        Votre prochaine nuit à Port-Gentil mérite mieux qu'un hôtel ordinaire
+      </h2>
+      <p class="cta-section__sub">
+        Chambres disponibles dès ce soir. Devis séminaire sous 24 heures. Notre équipe est joignable par téléphone ou email pour toute demande sur mesure.
+      </p>
+    </div>
+
+    <div class="cta-section__actions">
+      <a href="mailto:contact@lagabonnaise.com" class="btn-cta-primary">Réserver maintenant</a>
+      <a href="tel:+221656016893" class="btn-cta-secondary">+221 656 016 893</a>
+    </div>
+
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer class="footer" id="contact">
+
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <p class="footer__logo">La Gabonnaise</p>
+        <p class="footer__tagline">
+          Hôtel de prestige au cœur de Port-Gentil — hébergement, restauration, spa et conférences depuis 2010.
+        </p>
+        <div class="footer__social" aria-label="Réseaux sociaux">
+          <a href="#" aria-label="Facebook">Fb</a>
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="LinkedIn">Li</a>
+        </div>
+      </div>
+
+      <nav aria-label="Navigation secondaire">
+        <p class="footer__nav-title">Navigation</p>
+        <ul class="footer__nav-links">
+          <li><a href="#chambres">Chambres & Suites</a></li>
+          <li><a href="#restaurant">Restaurant</a></li>
+          <li><a href="#spa">Spa & Piscine</a></li>
+          <li><a href="#seminaires">Conférences</a></li>
+          <li><a href="#a-propos">L'Hôtel</a></li>
+          <li><a href="#reservation">Réservation</a></li>
+        </ul>
+      </nav>
+
+      <address style="font-style: normal;">
+        <p class="footer__contact-title">Contact</p>
+        <ul class="footer__contact-list">
+          <li class="footer__contact-item">
+            <span class="footer__contact-label">Adresse</span>
+            <span class="footer__contact-value">Port-Gentil, Gabon</span>
+          </li>
+          <li class="footer__contact-item">
+            <span class="footer__contact-label">Téléphone</span>
+            <a href="tel:+221656016893" class="footer__contact-value">+221 656 016 893</a>
+          </li>
+          <li class="footer__contact-item">
+            <span class="footer__contact-label">Email</span>
+            <a href="mailto:contact@lagabonnaise.com" class="footer__contact-value">contact@lagabonnaise.com</a>
+          </li>
+          <li class="footer__contact-item">
+            <span class="footer__contact-label">Réception</span>
+            <span class="footer__contact-value">Ouverte 24h/24</span>
+          </li>
+        </ul>
+      </address>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; 2024 <strong>La Gabonnaise</strong>. Tous droits réservés. Port-Gentil, République Gabonaise.
+      </p>
+      <p class="footer__badge">Hôtellerie & Tourisme</p>
+    </div>
+
+  </footer>
+
+</body>
+</html>

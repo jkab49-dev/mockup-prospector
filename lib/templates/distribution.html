@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{COMPANY}} — Distribution & Commerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange:      oklch(58% 0.18 40);
+      --orange-dark: oklch(42% 0.15 40);
+      --orange-deep: oklch(30% 0.10 40);
+      --orange-pale: oklch(72% 0.14 42);
+      --pearl:       oklch(97% 0.006 40);
+      --warm-gray:   oklch(92% 0.008 40);
+      --ink:         oklch(16% 0.008 40);
+      --muted:       oklch(50% 0.018 40);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito Sans', sans-serif; background: var(--pearl); color: var(--ink); line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--orange); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; }
+    .nav-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--pearl); letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: oklch(90% 0.05 40); text-decoration: none; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--pearl); }
+    .nav-cta { background: var(--ink); color: var(--pearl); padding: 10px 24px; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--orange-deep); }
+
+    /* HERO — orange drenched avec photo */
+    .hero { min-height: 100vh; padding-top: 64px; display: grid; grid-template-columns: 55% 45%; }
+    .hero-content { background: var(--orange); display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 48px; }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: oklch(88% 0.06 40); margin-bottom: 24px; font-weight: 600; }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 9rem); color: var(--pearl); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 32px; text-wrap: balance; }
+    .hero-sub { color: oklch(90% 0.04 40); font-size: 1.0625rem; font-weight: 300; max-width: 50ch; margin-bottom: 48px; line-height: 1.65; }
+    .hero-cta { background: var(--ink); color: var(--pearl); padding: 18px 40px; font-family: 'Bebas Neue', sans-serif; font-size: 1.125rem; letter-spacing: 0.1em; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .hero-cta:hover { background: var(--orange-deep); }
+    .hero-img-col { background-image: url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; }
+
+    /* BAND chiffres */
+    .kpi-band { background: var(--ink); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .kpi { padding: 48px 32px; border-right: 1px solid oklch(28% 0.005 40); }
+    .kpi:last-child { border-right: none; }
+    .kpi-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--orange); line-height: 1; margin-bottom: 6px; letter-spacing: 0.02em; }
+    .kpi-label { font-size: 0.8rem; color: oklch(60% 0.01 40); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+    /* SERVICES — pas de cartes : layout asymétrique */
+    .services { padding: 120px 48px; display: grid; grid-template-columns: 4fr 8fr; gap: 80px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); font-weight: 700; margin-bottom: 12px; }
+    .services-intro h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 0.95; letter-spacing: 0.02em; text-wrap: balance; margin-bottom: 28px; }
+    .services-intro p { color: var(--muted); max-width: 38ch; }
+    .service-list { display: flex; flex-direction: column; }
+    .service-row { display: grid; grid-template-columns: 56px 1fr; gap: 28px; padding: 40px 0; border-top: 1px solid var(--warm-gray); }
+    .service-row:last-child { border-bottom: 1px solid var(--warm-gray); }
+    .service-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--orange); letter-spacing: 0.04em; padding-top: 2px; }
+    .service-row h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.03em; margin-bottom: 8px; }
+    .service-row p { color: var(--muted); font-size: 0.9375rem; }
+
+    /* ZONE IMPACT */
+    .impact { background: var(--orange-dark); padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .impact-text { color: var(--pearl); }
+    .impact-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 32px; }
+    .impact-text p { color: oklch(85% 0.04 40); max-width: 50ch; line-height: 1.7; margin-bottom: 16px; }
+    .impact-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; height: 440px; }
+
+    /* À PROPOS */
+    .about { padding: 120px 48px; background: var(--warm-gray); }
+    .about h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 0.02em; margin-bottom: 48px; max-width: 22ch; text-wrap: balance; }
+    .about-cols { display: grid; grid-template-columns: 3fr 2fr; gap: 64px; }
+    .about-cols p { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 16px; }
+    .contact-panel { background: var(--orange); padding: 40px; color: var(--pearl); }
+    .contact-panel h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; margin-bottom: 24px; }
+    .c-line { margin-bottom: 20px; }
+    .c-line strong { display: block; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: oklch(88% 0.06 40); margin-bottom: 6px; font-weight: 700; }
+    .c-line span { font-size: 0.9rem; color: oklch(92% 0.04 40); }
+
+    footer { background: var(--ink); color: oklch(50% 0.01 40); padding: 64px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--pearl); letter-spacing: 0.06em; margin-bottom: 12px; }
+    .footer-tagline { font-size: 0.875rem; max-width: 38ch; line-height: 1.6; }
+    footer h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: oklch(70% 0.01 40); margin-bottom: 20px; font-weight: 700; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 10px; }
+    footer a { color: oklch(45% 0.01 40); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    footer a:hover { color: var(--orange-pale); }
+    footer p { font-size: 0.875rem; margin-bottom: 10px; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 40px; border-top: 1px solid oklch(25% 0.005 40); display: flex; justify-content: space-between; font-size: 0.75rem; color: oklch(35% 0.008 40); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; } .hero-img-col { height: 40vh; }
+      .hero-content { padding: 60px 20px; }
+      .kpi-band { grid-template-columns: 1fr 1fr; } .kpi { border-right: none; border-bottom: 1px solid oklch(28% 0.005 40); }
+      .services, .impact, .about-cols { grid-template-columns: 1fr; }
+      .impact-img { height: 280px; }
+      .services, .impact, .about, footer { padding: 80px 20px; }
+      footer { grid-template-columns: 1fr; gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">{{COMPANY}}</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">Société</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Devenir partenaire</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">{{CITY}} · {{COUNTRY}}</p>
+    <h1>Le commerce qui avance</h1>
+    <p class="hero-sub">{{COMPANY}} distribue, stocke et livre pour les professionnels de {{COUNTRY}}. Rapidité, fiabilité, couverture nationale.</p>
+    <a href="#contact" class="hero-cta">Demander un partenariat</a>
+  </div>
+  <div class="hero-img-col"></div>
+</section>
+
+<div class="kpi-band">
+  <div class="kpi"><div class="kpi-num">1200+</div><div class="kpi-label">Clients actifs</div></div>
+  <div class="kpi"><div class="kpi-num">48h</div><div class="kpi-label">Délai de livraison</div></div>
+  <div class="kpi"><div class="kpi-num">32</div><div class="kpi-label">Points de distribution</div></div>
+  <div class="kpi"><div class="kpi-num">10 ans</div><div class="kpi-label">Sur le marché</div></div>
+</div>
+
+<section class="services" id="services">
+  <div class="services-intro">
+    <p class="section-label">Ce que nous faisons</p>
+    <h2>Distribution & Logistique</h2>
+    <p>Des solutions sur mesure pour les commerces, supermarchés et grossistes de {{COUNTRY}}.</p>
+  </div>
+  <div class="service-list">
+    <div class="service-row"><div class="service-num">01</div><div><h3>Distribution B2B</h3><p>Approvisionnement régulier des commerces de détail, supermarchés et points de vente professionnels sur tout le territoire.</p></div></div>
+    <div class="service-row"><div class="service-num">02</div><div><h3>Logistique & Stockage</h3><p>Entrepôts sécurisés, gestion des stocks en temps réel, préparation de commandes et transport optimisé.</p></div></div>
+    <div class="service-row"><div class="service-num">03</div><div><h3>Import & Sourcing</h3><p>Importation de produits de consommation courante, gestion douanière, sourcing auprès de fournisseurs certifiés.</p></div></div>
+    <div class="service-row"><div class="service-num">04</div><div><h3>Commerce en ligne</h3><p>Plateforme e-commerce B2B pour les professionnels. Commandez, suivez vos livraisons, gérez vos factures en ligne.</p></div></div>
+  </div>
+</section>
+
+<section class="impact">
+  <div class="impact-text">
+    <h2>Le commerce de demain se construit aujourd'hui</h2>
+    <p>{{COMPANY}} investit en permanence dans ses outils logistiques et sa flotte de véhicules pour garantir une distribution sans faille, même dans les zones reculées de {{COUNTRY}}.</p>
+    <p>Nos équipes terrain sont formées à la gestion de stocks et aux bonnes pratiques commerciales. Nous ne livrons pas seulement des produits, nous accompagnons la croissance de nos partenaires.</p>
+  </div>
+  <div class="impact-img"></div>
+</section>
+
+<section class="about" id="about">
+  <p class="section-label">La société</p>
+  <h2>{{COMPANY}}, leader de la distribution en {{COUNTRY}}</h2>
+  <div class="about-cols">
+    <div>
+      <p>Depuis 10 ans, {{COMPANY}} construit un réseau de distribution solide et fiable. Notre approche : des relations durables avec nos partenaires, des délais tenus, une qualité constante.</p>
+      <p>Services couverts : {{SERVICES}}. Nous travaillons avec des entreprises de toutes tailles, de l'épicier de quartier à la grande surface.</p>
+    </div>
+    <div class="contact-panel">
+      <h3>Nous contacter</h3>
+      <div class="c-line"><strong>Téléphone</strong><span>{{PHONE}}</span></div>
+      <div class="c-line"><strong>Email</strong><span>{{EMAIL}}</span></div>
+      <div class="c-line"><strong>Siège</strong><span>{{CITY}}, {{COUNTRY}}</span></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div>
+    <div class="footer-brand">{{COMPANY}}</div>
+    <p class="footer-tagline">Distribution & Commerce en {{COUNTRY}}. Rapide, fiable, partout.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#">Distribution B2B</a></li>
+      <li><a href="#">Logistique</a></li>
+      <li><a href="#">Import & Sourcing</a></li>
+      <li><a href="#">E-commerce B2B</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <p>{{PHONE}}</p>
+    <p>{{EMAIL}}</p>
+    <p>{{CITY}}, {{COUNTRY}}</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 {{COMPANY}}. Tous droits réservés.</span>
+    <span>Distribution & Commerce · {{COUNTRY}}</span>
+  </div>
+</footer>
+</body>
+</html>

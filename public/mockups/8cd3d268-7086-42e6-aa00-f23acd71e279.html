@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COREX International — Assistance en Escale & Ground Handling, Libreville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --charcoal:   oklch(22% 0.04 265);
+      --dark:       oklch(14% 0.03 265);
+      --slate:      oklch(30% 0.04 265);
+      --mid:        oklch(42% 0.03 265);
+      --yellow:     oklch(80% 0.18 95);
+      --yellow-dim: oklch(65% 0.14 95);
+      --off-white:  oklch(96% 0.006 265);
+      --ghost:      oklch(88% 0.008 265);
+      --text-dim:   oklch(58% 0.02 265);
+      --rule:       oklch(30% 0.025 265);
+      --rule-light: oklch(88% 0.006 265);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--charcoal);
+      color: var(--off-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--dark);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--off-white); }
+    .nav-cta {
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 10px 24px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--yellow); color: var(--dark); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        oklch(14% 0.04 265 / 0.96) 0%,
+        oklch(14% 0.04 265 / 0.88) 50%,
+        oklch(14% 0.04 265 / 0.55) 100%
+      );
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 80px;
+      align-items: flex-end;
+      padding: 0 48px 100px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--yellow);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
+      margin-bottom: 32px;
+    }
+    .hero h1 .thin {
+      font-weight: 200;
+      color: oklch(72% 0.02 265);
+      display: block;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 .accent { color: var(--yellow); }
+    .hero-sub {
+      color: oklch(68% 0.018 265);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 52ch;
+      line-height: 1.72;
+      margin-bottom: 52px;
+    }
+    .hero-actions { display: flex; gap: 20px; align-items: center; }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 15px 36px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+      font-family: 'Sora', sans-serif;
+    }
+    .btn-primary:hover { background: var(--yellow-dim); }
+    .btn-outline {
+      color: oklch(72% 0.02 265);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-outline:hover { color: var(--off-white); }
+    .hero-right {
+      align-self: flex-end;
+      padding-bottom: 4px;
+    }
+    .hero-cert-block {
+      border-top: 1px solid oklch(40% 0.03 265);
+      padding-top: 36px;
+    }
+    .cert-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .cert-line {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--off-white);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .cert-sub {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+    }
+    .hero-locations {
+      display: flex;
+      gap: 24px;
+    }
+    .loc-chip {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--yellow);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .loc-chip::before {
+      content: '→ ';
+      font-weight: 400;
+      color: var(--text-dim);
+    }
+
+    /* ── BANDE CHIFFRE CLÉ ── */
+    .key-stat {
+      background: var(--yellow);
+      padding: 72px 48px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .key-stat-number {
+      font-size: clamp(4rem, 10vw, 7.5rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+    }
+    .key-stat-number sup {
+      font-size: 0.35em;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+    .key-stat-right { border-left: 2px solid oklch(65% 0.14 95); padding-left: 48px; }
+    .key-stat-claim {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .key-stat-detail {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: oklch(28% 0.04 265);
+      line-height: 1.6;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--dark);
+      padding: 120px 0;
+    }
+    .services-inner {
+      display: grid;
+      grid-template-columns: 3fr 9fr;
+      gap: 0;
+    }
+    .services-intro {
+      padding: 0 48px;
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .services-intro h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      margin-bottom: 24px;
+    }
+    .services-intro p {
+      color: var(--text-dim);
+      font-weight: 300;
+      font-size: 0.9rem;
+      max-width: 32ch;
+      line-height: 1.7;
+    }
+    .service-list {
+      padding: 0 48px 0 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 32px;
+      padding: 44px 48px;
+      border-top: 1px solid var(--rule);
+      align-items: start;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .service-item:last-child { border-bottom: 1px solid var(--rule); }
+    .service-item:hover { background: oklch(18% 0.035 265); }
+    .s-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--yellow-dim);
+      letter-spacing: 0.12em;
+      padding-top: 5px;
+      font-variant-numeric: tabular-nums;
+    }
+    .s-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      color: var(--off-white);
+    }
+    .s-body p {
+      color: var(--text-dim);
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.68;
+      max-width: 55ch;
+    }
+    .s-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: oklch(40% 0.03 265);
+      padding-top: 5px;
+      white-space: nowrap;
+    }
+
+    /* ── OPERATIONS GRID (section asymétrique) ── */
+    .operations {
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+    }
+    .ops-header {
+      grid-column: 1 / -1;
+      background: var(--charcoal);
+      padding: 0 0 72px 0;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 60px;
+      align-items: end;
+    }
+    .ops-header h2 {
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 0.95;
+      text-wrap: balance;
+    }
+    .ops-header h2 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+    .ops-header p {
+      color: var(--text-dim);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      line-height: 1.72;
+      max-width: 50ch;
+      align-self: end;
+    }
+    .op-cell {
+      background: var(--charcoal);
+      padding: 52px 48px;
+    }
+    .op-cell.wide {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      background: var(--slate);
+    }
+    .op-step {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .op-cell h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .op-cell p {
+      color: var(--text-dim);
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.68;
+    }
+    .op-cell.wide .op-visual {
+      height: 220px;
+      background: oklch(22% 0.04 265);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .op-cell.wide .op-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .tracking-callout {
+      background: oklch(20% 0.05 265);
+      padding: 52px 48px;
+      border-top: 2px solid var(--yellow);
+    }
+    .tracking-callout h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--yellow);
+    }
+    .tracking-callout p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .tracking-form {
+      display: flex;
+      gap: 0;
+    }
+    .tracking-form input {
+      flex: 1;
+      background: oklch(28% 0.04 265);
+      border: 1px solid var(--rule);
+      border-right: none;
+      color: var(--off-white);
+      font-family: 'Sora', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      padding: 12px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .tracking-form input::placeholder { color: oklch(42% 0.02 265); }
+    .tracking-form input:focus { border-color: var(--yellow); }
+    .tracking-form button {
+      background: var(--yellow);
+      color: var(--dark);
+      border: none;
+      padding: 12px 24px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .tracking-form button:hover { background: var(--yellow-dim); }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--slate);
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      gap: 96px;
+      align-items: start;
+    }
+    .about-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .about h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      text-wrap: balance;
+      margin-bottom: 32px;
+    }
+    .about-body p {
+      color: oklch(68% 0.02 265);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 18px;
+      max-width: 58ch;
+    }
+    .about-body p strong {
+      color: var(--off-white);
+      font-weight: 600;
+    }
+    .about-panel {
+      background: var(--dark);
+      padding: 40px;
+    }
+    .about-panel-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: oklch(55% 0.025 265);
+      font-weight: 700;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .info-row { margin-bottom: 28px; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .info-val {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: oklch(80% 0.018 265);
+      line-height: 1.5;
+    }
+    .info-val a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .info-val a:hover { color: var(--yellow); }
+    .poles-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pole-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .pole-name {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--yellow-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pole-tel {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: oklch(78% 0.018 265);
+    }
+    .pole-tel a { color: inherit; text-decoration: none; }
+    .pole-tel a:hover { color: var(--yellow); }
+
+    /* ── HORAIRES ── */
+    .hours-strip {
+      background: oklch(18% 0.04 265);
+      padding: 60px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background-color: var(--rule);
+    }
+    .hours-cell {
+      background: oklch(18% 0.04 265);
+      padding: 40px 48px;
+    }
+    .hours-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hours-val {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--off-white);
+      line-height: 1.4;
+    }
+    .hours-note {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    /* ── CONTACT BAR ── */
+    .contact-bar {
+      background: var(--yellow);
+      padding: 88px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .contact-bar-left {}
+    .contact-bar-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: oklch(38% 0.06 95);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .contact-bar h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.025em;
+      max-width: 32ch;
+      text-wrap: balance;
+      line-height: 1.1;
+    }
+    .contact-bar-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .btn-dark {
+      background: var(--dark);
+      color: var(--off-white);
+      padding: 16px 36px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'Sora', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: var(--charcoal); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: var(--text-dim);
+      padding: 72px 48px 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.5fr 1.5fr 2fr;
+      gap: 80px;
+      margin-bottom: 56px;
+    }
+    .footer-tagline {
+      font-size: 0.875rem;
+      max-width: 38ch;
+      line-height: 1.65;
+      font-weight: 300;
+      margin-top: 20px;
+      color: oklch(46% 0.022 265);
+    }
+    .footer-cert {
+      margin-top: 28px;
+      display: inline-block;
+      border: 1px solid oklch(28% 0.03 265);
+      padding: 10px 16px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: oklch(42% 0.025 265);
+      font-weight: 600;
+    }
+    footer h4 {
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: oklch(50% 0.025 265);
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 12px; }
+    footer a {
+      color: oklch(44% 0.022 265);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 300;
+      transition: color 0.2s;
+      line-height: 1.5;
+    }
+    footer a:hover { color: var(--yellow-dim); }
+    .footer-contact-item {
+      margin-bottom: 20px;
+    }
+    .footer-contact-label {
+      display: block;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: oklch(38% 0.02 265);
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    .footer-contact-val {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: oklch(50% 0.022 265);
+      line-height: 1.5;
+    }
+    .footer-contact-val a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .footer-contact-val a:hover { color: var(--yellow-dim); }
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: oklch(34% 0.018 265);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .services-inner { grid-template-columns: 1fr; }
+      .services-intro { position: static; padding: 0 48px 48px; }
+      .service-list { padding: 0; }
+      .operations { padding: 80px 24px; }
+      .ops-header { grid-template-columns: 1fr; }
+      .op-cell.wide { grid-template-columns: 1fr; }
+      .op-cell.wide .op-visual { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; padding: 0 24px 80px; gap: 48px; }
+      .hero-right { display: none; }
+      .key-stat { grid-template-columns: 1fr; gap: 32px; padding: 56px 24px; }
+      .key-stat-right { border-left: none; border-top: 2px solid oklch(65% 0.14 95); padding-left: 0; padding-top: 28px; }
+      .services { padding: 80px 0; }
+      .services-intro { padding: 0 24px 40px; }
+      .service-item { grid-template-columns: 40px 1fr; padding: 32px 24px; gap: 20px; }
+      .s-tag { display: none; }
+      .operations { grid-template-columns: 1fr; padding: 80px 24px; }
+      .ops-header { grid-template-columns: 1fr; padding-bottom: 48px; }
+      .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .hours-strip { grid-template-columns: 1fr; padding: 0; }
+      .hours-cell { padding: 32px 24px; }
+      .contact-bar { flex-direction: column; align-items: flex-start; padding: 64px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 56px 24px 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .tracking-callout { padding: 36px 24px; }
+      .op-cell { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-logo">
+    <img src="/logos/8cd3d268-7086-42e6-aa00-f23acd71e279.png"
+         alt="Logo COREX International"
+         style="height:40px;width:auto;object-fit:contain;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#operations">Opérations</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#tracking">Tracking</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Nous contacter</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80"
+      alt="Piste d'aéroport au crépuscule avec avion de ligne en manœuvre, illustrant les opérations de ground handling"
+    >
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Libreville · Port-Gentil · Gabon</p>
+      <h1>
+        Ground Handling<br>
+        <span class="thin">certifié &amp;</span>
+        <span class="accent">intégral.</span>
+      </h1>
+      <p class="hero-sub">
+        COREX International est le premier Opérateur d'Assistance en Escale certifié au Gabon — full handling complet pour les compagnies aériennes à Libreville et Port-Gentil.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Obtenir une cotation</a>
+        <a href="#services" class="btn-outline">Nos services →</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-cert-block">
+        <p class="cert-label">Certification</p>
+        <p class="cert-line">1er Opérateur d'Assistance<br>en Escale certifié au Gabon</p>
+        <p class="cert-sub">Full handling · Libreville &amp; Port-Gentil</p>
+        <div class="hero-locations">
+          <span class="loc-chip">Libreville</span>
+          <span class="loc-chip">Port-Gentil</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHIFFRE CLÉ ── -->
+<div class="key-stat">
+  <div class="key-stat-number">24<sup>h</sup></div>
+  <div class="key-stat-right">
+    <p class="key-stat-claim">Opérations continues, 7 jours sur 7, sur les deux aéroports du Gabon</p>
+    <p class="key-stat-detail">De l'autorisation de survol à la livraison des bagages, COREX assure chaque phase de l'escale avec une présence permanente en piste et en terminal.</p>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-intro">
+      <span class="section-label">Nos domaines</span>
+      <h2>Une solution de handling complète</h2>
+      <p>Chaque compagnie aérienne reçoit une prise en charge sur-mesure, de la première démarche administrative à la clôture du vol.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="s-num">01</div>
+        <div class="s-body">
+          <h3>Assistance Administrative</h3>
+          <p>Autorisations de survol et d'atterrissage, gestion des slots, démarches réglementaires auprès des autorités gabonaises. Nous anticipons chaque contrainte administrative pour garantir la ponctualité de vos opérations.</p>
+        </div>
+        <div class="s-tag">Administrative</div>
+      </div>
+      <div class="service-item">
+        <div class="s-num">02</div>
+        <div class="s-body">
+          <h3>Opérations en Piste</h3>
+          <p>Coordination complète des opérations au sol — guidage, services de dégivrage, ravitaillement, assistance technique et supervision de la piste. Nos équipes sont certifiées et disponibles 24h/24.</p>
+        </div>
+        <div class="s-tag">On-track</div>
+      </div>
+      <div class="service-item">
+        <div class="s-num">03</div>
+        <div class="s-body">
+          <h3>Fret &amp; Services Postaux</h3>
+          <p>Gestion complète du cargo aérien : réception, pesage, documentation, stockage en entrepôt sécurisé et remise aux destinataires. Logistique adaptée aux flux de l'Afrique centrale.</p>
+        </div>
+        <div class="s-tag">Freight &amp; post</div>
+      </div>
+      <div class="service-item">
+        <div class="s-num">04</div>
+        <div class="s-body">
+          <h3>Assistance Passagers &amp; Bagages</h3>
+          <p>Accueil et Meet &amp; Assist pour les équipages et passagers, enregistrement, embarquement, gestion des bagages et traitement des irrégularités. Une présence humaine à chaque point de contact.</p>
+        </div>
+        <div class="s-tag">PAX · Baggage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OPERATIONS / MÉTHODE ── -->
+<section class="operations" id="operations">
+  <div class="ops-header">
+    <h2>
+      L'escale parfaite,<br>
+      <em>opération</em><br>
+      par opération.
+    </h2>
+    <p>
+      Notre modèle de full handling repose sur une coordination rigoureuse entre chaque pôle — commercial, terrain et logistique — pour que chaque vol se déroule sans accroc, quelle que soit la complexité de l'escale.
+    </p>
+  </div>
+
+  <div class="op-cell">
+    <span class="op-step">Phase 01</span>
+    <h3>Préparation &amp; Coordination</h3>
+    <p>Réception du plan de vol, vérification des autorisations, briefing des équipes au sol et positionnement des matériels avant l'arrivée de l'aéronef.</p>
+  </div>
+
+  <div class="op-cell">
+    <span class="op-step">Phase 02</span>
+    <h3>Accueil en Piste</h3>
+    <p>Guidage de l'appareil, mise en place des cales et de la passerelle, accueil immédiat de l'équipage par nos agents Meet &amp; Assist dédiés.</p>
+  </div>
+
+  <div class="op-cell wide">
+    <div>
+      <span class="op-step">Phase 03</span>
+      <h3>Traitement Simultané</h3>
+      <p>Déchargement et chargement du fret et des bagages, ravitaillement, nettoyage cabine, services traiteur et gestion des passagers en transit — tout se déroule en parallèle pour minimiser le temps d'escale.</p>
+    </div>
+    <div class="op-visual">
+      <img
+        src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?auto=format&fit=crop&w=800&q=75"
+        alt="Équipe au sol traitant la soute d'un aéronef commercial sur piste"
+      >
+    </div>
+  </div>
+
+  <div class="op-cell">
+    <span class="op-step">Phase 04</span>
+    <h3>Départ &amp; Clôture</h3>
+    <p>Vérification finale de la masse et du centrage, transmission du load sheet, supervision du push-back et clôture documentaire du vol.</p>
+  </div>
+
+  <div class="tracking-callout" id="tracking">
+    <h3>Suivi LTA / AWB</h3>
+    <p>Saisissez votre numéro LTA ou AWB sans tiret pour suivre votre fret en temps réel.</p>
+    <div class="tracking-form">
+      <input type="text" placeholder="Ex : 1231458333" aria-label="Numéro LTA ou AWB">
+      <button type="button">Tracking →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── À PROPOS ── -->
+<section class="about" id="about">
+  <div class="about-body">
+    <span class="about-label">À propos de COREX</span>
+    <h2>Le premier Ground Handler certifié du Gabon</h2>
+    <p>
+      <strong>COREX International</strong> est né d'une conviction simple : les compagnies aériennes opérant au Gabon méritent un partenaire au sol à la hauteur des standards internationaux, ancré dans les réalités locales.
+    </p>
+    <p>
+      Depuis notre création, nous avons bâti une organisation capable de traiter simultanément toutes les phases de l'escale — du fret à l'assistance passager, des démarches administratives aux opérations en piste — sous une seule responsabilité, avec une seule équipe formée et certifiée.
+    </p>
+    <p>
+      Présents à <strong>Libreville</strong> et <strong>Port-Gentil</strong>, nous sommes le seul opérateur gabonais proposant une solution de full handling complète et intégrée, 24h/24 et 7j/7, pour les compagnies aériennes régionales et internationales.
+    </p>
+  </div>
+  <div class="about-panel">
+    <p class="about-panel-title">Coordonnées &amp; Pôles</p>
+    <div class="info-row">
+      <span class="info-label">Siège</span>
+      <span class="info-val">Libreville, Gabon</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Pôles de contact</span>
+      <div class="poles-list">
+        <div class="pole-item">
+          <span class="pole-name">Pôle Commercial</span>
+          <span class="pole-tel"><a href="tel:+24160474981">+241 (0) 60 474 981</a></span>
+        </div>
+        <div class="pole-item">
+          <span class="pole-name">Pôle Handling &amp; Logistique</span>
+          <span class="pole-tel"><a href="tel:+24162019586">+241 (0) 62 01 95 86</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Zones couvertes</span>
+      <span class="info-val">Libreville (LBV) · Port-Gentil (POG)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Numéro de référence</span>
+      <span class="info-val">1231458333</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── HORAIRES ── -->
+<div class="hours-strip">
+  <div class="hours-cell">
+    <span class="hours-label">Lundi – Vendredi</span>
+    <p class="hours-val">Opérations 24h/24</p>
+    <p class="hours-note">Pôle commercial : 07h – 18h</p>
+  </div>
+  <div class="hours-cell">
+    <span class="hours-label">Samedi – Dimanche</span>
+    <p class="hours-val">Opérations 24h/24</p>
+    <p class="hours-note">Sur appel pour le pôle commercial</p>
+  </div>
+  <div class="hours-cell">
+    <span class="hours-label">Jours fériés</span>
+    <p class="hours-val">Service ininterrompu</p>
+    <p class="hours-note">Aucune interruption des opérations piste</p>
+  </div>
+</div>
+
+<!-- ── CONTACT BAR ── -->
+<section class="contact-bar" id="contact">
+  <div class="contact-bar-left">
+    <span class="contact-bar-label">Démarrez votre escale</span>
+    <h2>Un vol prévu à Libreville ou Port-Gentil ?</h2>
+  </div>
+  <div class="contact-bar-actions">
+    <a href="tel:+24160474981" class="btn-dark">Pôle Commercial →</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="/logos/8cd3d268-7086-42e6-aa00-f23acd71e279.png"
+           alt="Logo COREX International"
+           style="height:32px;width:auto;object-fit:contain;">
+      <p class="footer-tagline">
+        Premier Opérateur d'Assistance en Escale certifié au Gabon. Full handling intégral à Libreville et Port-Gentil.
+      </p>
+      <span class="footer-cert">Ground Handler certifié · Gabon</span>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#services">Nos services</a></li>
+        <li><a href="#operations">Opérations</a></li>
+        <li><a href="#tracking">Tracking LTA/AWB</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Pôle Commercial</span>
+        <span class="footer-contact-val"><a href="tel:+24160474981">+241 (0) 60 474 981</a></span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Pôle Handling &amp; Logistique</span>
+        <span class="footer-contact-val"><a href="tel:+24162019586">+241 (0) 62 01 95 86</a></span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Implantations</span>
+        <span class="footer-contact-val">Libreville (LBV)<br>Port-Gentil (POG)</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 COREX International. Tous droits réservés.</span>
+    <span>Ground Handling &amp; Assistance en Escale · Gabon</span>
+  </div>
+</footer>
+
+</body>
+</html>

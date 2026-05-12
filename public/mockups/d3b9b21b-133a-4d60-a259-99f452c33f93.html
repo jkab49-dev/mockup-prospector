@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTP Construction — Bâtiment & Travaux Publics à Port-Gentil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand:         oklch(47% 0.13 158);
+      --brand-dark:    oklch(30% 0.10 158);
+      --brand-deep:    oklch(20% 0.07 158);
+      --brand-light:   oklch(62% 0.12 158);
+      --brand-muted:   oklch(47% 0.08 158);
+      --amber:         oklch(72% 0.16 78);
+      --amber-dark:    oklch(52% 0.14 72);
+      --concrete:      oklch(96% 0.006 158);
+      --concrete-warm: oklch(92% 0.008 158);
+      --steel:         oklch(85% 0.009 158);
+      --graphite:      oklch(30% 0.012 158);
+      --ink:           oklch(14% 0.009 158);
+      --muted:         oklch(48% 0.018 158);
+      --muted-light:   oklch(60% 0.012 158);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--concrete);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+    }
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem; font-weight: 900;
+      color: var(--concrete); letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-brand-mark {
+      width: 28px; height: 28px;
+      background: var(--brand);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 900; color: var(--concrete);
+    }
+    .nav-brand span { color: var(--brand-light); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: oklch(58% 0.012 158); text-decoration: none;
+      font-size: 0.8125rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--concrete); }
+    .nav-cta {
+      background: var(--brand); color: var(--concrete);
+      padding: 10px 22px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--brand-light); }
+
+    /* ─── HERO ─── */
+    .hero {
+      height: 100vh; position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center 25%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        oklch(14% 0.009 158 / 0.97) 0%,
+        oklch(14% 0.009 158 / 0.85) 45%,
+        oklch(14% 0.009 158 / 0.3) 75%,
+        oklch(14% 0.009 158 / 0.05) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 48px 88px;
+      align-self: end;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-location-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--brand-light);
+      flex-shrink: 0;
+    }
+    .hero-location-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--brand-light);
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 7.5vw, 7rem);
+      font-weight: 900;
+      color: var(--concrete);
+      line-height: 0.92;
+      text-transform: uppercase;
+      text-wrap: balance;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--brand-light);
+    }
+    .hero-sub {
+      color: oklch(68% 0.012 158);
+      font-size: 1.0625rem;
+      font-weight: 300;
+      max-width: 44ch;
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+    .hero-cta-row {
+      display: flex; align-items: center; gap: 24px;
+    }
+    .btn-primary {
+      background: var(--brand); color: var(--concrete);
+      padding: 15px 34px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--brand-light); }
+    .btn-ghost {
+      color: oklch(65% 0.012 158);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-ghost::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+    .btn-ghost:hover { color: var(--concrete); }
+    .btn-ghost:hover::after { transform: translateX(4px); }
+
+    .hero-right-panel {
+      position: relative; z-index: 2;
+      align-self: stretch;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding-bottom: 88px;
+    }
+
+    /* ─── TICKER BAND ─── */
+    .ticker-band {
+      background: var(--brand);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 24s linear infinite;
+    }
+    .ticker-inner span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--concrete);
+      padding: 0 48px;
+    }
+    .ticker-inner span::before {
+      content: '◆';
+      margin-right: 48px;
+      color: oklch(62% 0.10 158);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── ANCRAGE CONFIANCE — STAT UNIQUE ─── */
+    .trust-anchor {
+      background: var(--brand-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 380px;
+    }
+    .trust-big-stat {
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid oklch(35% 0.08 158);
+    }
+    .trust-big-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(5rem, 12vw, 10rem);
+      font-weight: 900;
+      color: var(--concrete);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+    }
+    .trust-big-unit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      color: var(--brand-light);
+    }
+    .trust-big-label {
+      margin-top: 20px;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: oklch(65% 0.08 158);
+      letter-spacing: 0.04em;
+      max-width: 28ch;
+      line-height: 1.5;
+    }
+    .trust-context {
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .trust-context-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 900;
+      color: var(--concrete);
+      text-transform: uppercase;
+      line-height: 1.1;
+      text-wrap: balance;
+      margin-bottom: 20px;
+    }
+    .trust-context p {
+      color: oklch(62% 0.08 158);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      max-width: 46ch;
+      margin-bottom: 32px;
+    }
+    .trust-detail-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .trust-detail-list li {
+      font-size: 0.875rem;
+      color: oklch(68% 0.08 158);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .trust-detail-list li::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--brand-light);
+      flex-shrink: 0;
+    }
+
+    /* ─── SERVICES ─── */
+    .services {
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .services-intro { position: sticky; top: 96px; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brand);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .services-intro h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.02;
+      text-wrap: balance;
+      margin-bottom: 24px;
+    }
+    .services-intro p {
+      color: var(--muted);
+      max-width: 38ch;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+    .service-list { display: flex; flex-direction: column; }
+    .service-row {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 28px;
+      padding: 40px 0;
+      border-top: 1px solid var(--steel);
+      align-items: start;
+      transition: background 0.2s;
+    }
+    .service-row:last-child { border-bottom: 1px solid var(--steel); }
+    .service-row-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--brand);
+      letter-spacing: 0.08em;
+      padding-top: 4px;
+    }
+    .service-row h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+    .service-row p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      max-width: 54ch;
+    }
+    .service-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 5px 10px;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+    .tag-primary { background: oklch(95% 0.012 158); color: var(--brand); }
+    .tag-amber { background: oklch(96% 0.018 78); color: var(--amber-dark); }
+    .tag-graphite { background: var(--steel); color: var(--graphite); }
+
+    /* ─── RÉALISATION PHARE ─── */
+    .flagship {
+      background: var(--graphite);
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      min-height: 560px;
+    }
+    .flagship-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .flagship-visual-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .flagship-visual:hover .flagship-visual-img { transform: scale(1.04); }
+    .flagship-visual-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 28px;
+      background: oklch(14% 0.009 158 / 0.7);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: oklch(62% 0.012 158);
+    }
+    .flagship-text {
+      padding: 80px 72px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .flagship-text .section-label { color: var(--brand-light); }
+    .flagship-text h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--concrete);
+      text-wrap: balance;
+      line-height: 1.02;
+      margin-bottom: 20px;
+    }
+    .flagship-text p {
+      color: oklch(60% 0.012 158);
+      line-height: 1.7;
+      margin-bottom: 14px;
+      max-width: 48ch;
+      font-size: 0.9375rem;
+    }
+    .flagship-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px 0;
+      padding: 28px;
+      background: oklch(18% 0.009 158);
+    }
+    .spec-item {}
+    .spec-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.75rem; font-weight: 900;
+      color: var(--brand-light);
+      line-height: 1;
+    }
+    .spec-lbl {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: oklch(48% 0.012 158);
+      margin-top: 3px;
+    }
+    .btn-outline-light {
+      display: inline-block;
+      border: 1px solid oklch(38% 0.01 158);
+      color: var(--concrete);
+      padding: 13px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9375rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline-light:hover {
+      border-color: var(--brand-light);
+      background: oklch(20% 0.007 158);
+    }
+
+    /* ─── À PROPOS ─── */
+    .about {
+      padding: 120px 48px;
+      background: var(--concrete-warm);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-text .section-label { margin-bottom: 12px; }
+    .about-text h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      text-wrap: balance;
+      line-height: 1.04;
+      margin-bottom: 32px;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      max-width: 58ch;
+    }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .certif-row {
+      display: flex; align-items: center; gap: 16px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--steel);
+    }
+    .certif-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 8px 14px;
+      background: var(--ink); color: var(--concrete);
+    }
+    .certif-text {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    .about-panel {
+      background: var(--ink);
+      padding: 0;
+      position: relative;
+    }
+    .about-panel-img {
+      width: 100%;
+      height: 260px;
+      background-image: url('https://images.unsplash.com/photo-1590674899484-13da7e4a2de4?auto=format&fit=crop&w=600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .contact-block {
+      padding: 40px 36px;
+    }
+    .contact-block h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.125rem; font-weight: 700;
+      text-transform: uppercase;
+      color: var(--concrete);
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+    .contact-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid oklch(22% 0.009 158);
+    }
+    .contact-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .contact-item-lbl {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brand-muted);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .contact-item-val {
+      font-size: 0.9375rem;
+      color: var(--concrete);
+      font-weight: 400;
+    }
+    .contact-item-val a {
+      color: var(--concrete);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-item-val a:hover { color: var(--brand-light); }
+
+    /* ─── DOMAINES D'INTERVENTION ─── */
+    .expertise-band {
+      background: var(--steel);
+      padding: 64px 48px;
+      display: grid;
+      grid-template-columns: 3fr 9fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .expertise-band h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+    .expertise-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .expertise-pill {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 10px 20px;
+      background: var(--concrete);
+      color: var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+    .expertise-pill:hover {
+      background: var(--brand);
+      color: var(--concrete);
+    }
+    .expertise-pill-accent {
+      background: var(--brand);
+      color: var(--concrete);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: oklch(50% 0.012 158);
+      padding: 72px 48px 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr 2fr;
+      gap: 64px;
+      margin-bottom: 56px;
+    }
+    .footer-brand-wrap {}
+    .footer-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 900;
+      text-transform: uppercase;
+      color: var(--concrete);
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-brand-mark {
+      width: 24px; height: 24px;
+      background: var(--brand);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+    }
+    .footer-tagline {
+      font-size: 0.875rem;
+      max-width: 36ch;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .footer-brand-location {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: oklch(38% 0.01 158);
+    }
+    footer h4 {
+      font-size: 0.65rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 12px; }
+    footer a {
+      color: oklch(48% 0.012 158);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--brand-light); }
+    footer address {
+      font-style: normal;
+      font-size: 0.875rem;
+    }
+    footer address p {
+      margin-bottom: 10px;
+      color: oklch(48% 0.012 158);
+    }
+    footer address a {
+      color: oklch(48% 0.012 158);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer address a:hover { color: var(--brand-light); }
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid oklch(22% 0.007 158);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem;
+      color: oklch(36% 0.009 158);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .trust-anchor { grid-template-columns: 1fr; }
+      .trust-big-stat { border-right: none; border-bottom: 1px solid oklch(35% 0.08 158); }
+      .flagship { grid-template-columns: 1fr; }
+      .flagship-visual { height: 320px; position: relative; }
+      .flagship-visual-img { position: absolute; inset: 0; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-cta { padding: 8px 16px; font-size: 0.8rem; }
+
+      .hero { grid-template-columns: 1fr; height: 100vh; align-items: end; }
+      .hero-overlay {
+        background: oklch(14% 0.009 158 / 0.88);
+      }
+      .hero-content { padding: 0 24px 72px; }
+      .hero-right-panel { display: none; }
+
+      .ticker-inner span { padding: 0 28px; }
+
+      .trust-big-stat { padding: 56px 32px; }
+      .trust-context { padding: 48px 32px; }
+      .trust-big-num { font-size: clamp(4rem, 18vw, 7rem); }
+
+      .services { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+      .services-intro { position: static; }
+      .service-row { grid-template-columns: 48px 1fr; }
+      .service-tag { display: none; }
+
+      .flagship { grid-template-columns: 1fr; }
+      .flagship-text { padding: 56px 28px; }
+      .flagship-specs { grid-template-columns: 1fr 1fr; }
+
+      .about { padding: 80px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .expertise-band { grid-template-columns: 1fr; padding: 48px 24px; }
+
+      footer { padding: 56px 24px 32px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <span class="nav-brand-mark">B</span>
+    BTP<span>&nbsp;Construction</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projets">Réalisations</a></li>
+    <li><a href="#about">Société</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Devis gratuit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-location-dot"></div>
+      <span class="hero-location-text">Port-Gentil · Gabon</span>
+    </div>
+    <h1>Construire<br>ce qui <em>dure</em></h1>
+    <p class="hero-sub">Du gros œuvre aux infrastructures publiques, BTP Construction intervient sur tous les chantiers du Gabon avec rigueur, expertise locale et respect des délais.</p>
+    <div class="hero-cta-row">
+      <a href="#contact" class="btn-primary">Demander un devis</a>
+      <a href="#projets" class="btn-ghost">Voir nos réalisations</a>
+    </div>
+  </div>
+  <div class="hero-right-panel"></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-band" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>Construction neuve</span>
+    <span>Rénovation & Réhabilitation</span>
+    <span>Génie civil</span>
+    <span>Voirie & Infrastructures</span>
+    <span>Second œuvre</span>
+    <span>Maîtrise d'œuvre</span>
+    <span>Construction durable</span>
+    <span>Port-Gentil · Gabon</span>
+    <span>Construction neuve</span>
+    <span>Rénovation & Réhabilitation</span>
+    <span>Génie civil</span>
+    <span>Voirie & Infrastructures</span>
+    <span>Second œuvre</span>
+    <span>Maîtrise d'œuvre</span>
+    <span>Construction durable</span>
+    <span>Port-Gentil · Gabon</span>
+  </div>
+</div>
+
+<!-- ANCRAGE CONFIANCE -->
+<section class="trust-anchor">
+  <div class="trust-big-stat">
+    <div>
+      <div class="trust-big-num">300<span class="trust-big-unit">+</span></div>
+      <p class="trust-big-label">Chantiers livrés dans l'estuaire du Gabon depuis notre création à Port-Gentil</p>
+    </div>
+  </div>
+  <div class="trust-context">
+    <div>
+      <h2 class="trust-context-headline">L'expérience du terrain<br>gabonais</h2>
+      <p>Construire au Gabon exige de comprendre ses sols, ses marées et ses contraintes logistiques. Depuis notre implantation à Port-Gentil, nous avons développé une expertise unique pour les chantiers en milieu équatorial et en zone pétrolière.</p>
+      <ul class="trust-detail-list">
+        <li>Maîtrise des sols argileux et sableux du delta</li>
+        <li>Logistique adaptée aux zones d'accès difficile</li>
+        <li>Équipes 100 % opérationnelles sur site</li>
+        <li>Conformité aux normes CEMAC et internationales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-intro">
+    <span class="section-label">Ce que nous faisons</span>
+    <h2>Toutes phases du chantier</h2>
+    <p>De la première pelletée de terre à la réception des clés, nos équipes couvrent l'intégralité du cycle de construction.</p>
+  </div>
+  <div class="service-list">
+    <div class="service-row">
+      <div class="service-row-num">01</div>
+      <div>
+        <h3>Construction neuve</h3>
+        <p>Bâtiments résidentiels, commerciaux et industriels — de la conception au gros œuvre. Structures béton armé, acier ou préfabriquées. Fondations, maçonnerie, charpente.</p>
+      </div>
+      <div class="service-tag tag-primary">Clé en main</div>
+    </div>
+    <div class="service-row">
+      <div class="service-row-num">02</div>
+      <div>
+        <h3>Rénovation & Réhabilitation</h3>
+        <p>Modernisation et extension de bâtiments existants, mise aux normes énergie et accessibilité, réparations structurelles pour prolonger la durée de vie des ouvrages.</p>
+      </div>
+      <div class="service-tag tag-graphite">Mise à niveau</div>
+    </div>
+    <div class="service-row">
+      <div class="service-row-num">03</div>
+      <div>
+        <h3>Travaux publics & Génie civil</h3>
+        <p>Voirie, routes et trottoirs, ponts, barrages, réseaux VRD, assainissement et génie civil pour réseaux d'eau et d'électricité. Expertise sur les contraintes spécifiques du Delta de l'Ogooué.</p>
+      </div>
+      <div class="service-tag tag-amber">Infrastructures</div>
+    </div>
+    <div class="service-row">
+      <div class="service-row-num">04</div>
+      <div>
+        <h3>Second œuvre & Services spécialisés</h3>
+        <p>Plomberie, électricité, couverture, étanchéité, menuiserie. Construction durable avec matériaux éco-responsables. Gestion de projet, démolition, location de matériel avec opérateur.</p>
+      </div>
+      <div class="service-tag tag-graphite">Spécialisé</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINES D'EXPERTISE -->
+<div class="expertise-band">
+  <h2>Domaines d'intervention</h2>
+  <div class="expertise-items">
+    <span class="expertise-pill expertise-pill-accent">Bâtiment résidentiel</span>
+    <span class="expertise-pill">Bâtiment industriel</span>
+    <span class="expertise-pill">Voirie urbaine</span>
+    <span class="expertise-pill">Réseaux d'assainissement</span>
+    <span class="expertise-pill">Structures métalliques</span>
+    <span class="expertise-pill">Fondations spéciales</span>
+    <span class="expertise-pill">Étanchéité toiture</span>
+    <span class="expertise-pill">Maîtrise d'œuvre</span>
+    <span class="expertise-pill">Démolition contrôlée</span>
+    <span class="expertise-pill">Construction durable</span>
+  </div>
+</div>
+
+<!-- RÉALISATION PHARE -->
+<section class="flagship" id="projets">
+  <div class="flagship-visual">
+    <div class="flagship-visual-img" role="img" aria-label="Chantier de construction d'un complexe résidentiel à Port-Gentil, vue de la structure béton en cours d'élévation"></div>
+    <div class="flagship-visual-caption">Port-Gentil, Gabon — 2024</div>
+  </div>
+  <div class="flagship-text">
+    <span class="section-label">Réalisation phare</span>
+    <h2>Résidence Les Palmiers — 56 logements</h2>
+    <p>Un complexe résidentiel haut de gamme livré en 22 mois sur terrain argileux en zone côtière. Fondations profondes, structure béton armé parasismique, finitions intérieures européennes.</p>
+    <p>Gestion complète depuis les études de sol jusqu'à la remise des clés, avec coordination de 12 corps de métier simultanés sur site.</p>
+    <div class="flagship-specs">
+      <div class="spec-item">
+        <div class="spec-val">56</div>
+        <div class="spec-lbl">Logements livrés</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-val">22<span style="font-size:1rem">mois</span></div>
+        <div class="spec-lbl">Délai tenu</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-val">4200<span style="font-size:1rem">m²</span></div>
+        <div class="spec-lbl">Surface construite</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-val">12</div>
+        <div class="spec-lbl">Corps de métier</div>
+      </div>
+    </div>
+    <a href="#contact" class="btn-outline-light">Discuter de votre projet</a>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="section-label">La société</span>
+      <h2>BTP Construction, ancrée à Port-Gentil depuis plus de 15 ans</h2>
+      <p>Fondée par des ingénieurs formés en France et au Gabon, BTP Construction a bâti sa réputation sur <strong>la qualité de ses livrables, le respect des délais et une connaissance intime du terrain gabonais</strong>. Nos équipes connaissent chaque contrainte du sous-sol de l'Estuaire.</p>
+      <p>Nous intervenons sur l'ensemble du territoire national — de Port-Gentil à Libreville, d'Oyem à Franceville — pour des clients privés, des entreprises pétrolières et des collectivités publiques. Notre bureau d'études intégré garantit la cohérence entre conception et exécution.</p>
+      <p>Notre engagement : zéro compromis sur la sécurité des ouvrages, une transparence totale sur l'avancement des chantiers et des rapports hebdomadaires à chaque maître d'ouvrage.</p>
+      <div class="certif-row">
+        <span class="certif-badge">ISO 9001</span>
+        <span class="certif-badge">CEMAC</span>
+        <span class="certif-text">Certifiés et agréés pour les marchés publics gabonais</span>
+      </div>
+    </div>
+    <div class="about-panel">
+      <div class="about-panel-img" role="img" aria-label="Chef de chantier BTP Construction examinant des plans d'exécution sur un chantier à Port-Gentil au lever du jour"></div>
+      <div class="contact-block" id="contact">
+        <h3>Nous contacter</h3>
+        <div class="contact-item">
+          <div class="contact-item-lbl">Téléphone</div>
+          <div class="contact-item-val"><a href="tel:+221656016893">+221 656 016 893</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-lbl">Email</div>
+          <div class="contact-item-val"><a href="mailto:contact@BTPConstruction.com">contact@BTPConstruction.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-lbl">Siège social</div>
+          <div class="contact-item-val">Port-Gentil, République Gabonaise</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-lbl">Disponibilité</div>
+          <div class="contact-item-val">Lun – Sam, 07h00 – 18h00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand-wrap">
+      <div class="footer-brand">
+        <span class="footer-brand-mark" style="width:22px;height:22px;background:var(--brand);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;color:var(--concrete);">B</span>
+        BTP Construction
+      </div>
+      <p class="footer-tagline">Bâtiment & Travaux Publics au Gabon. Qualité d'exécution, rigueur de gestion, délais respectés — chantier après chantier.</p>
+      <p class="footer-brand-location">Port-Gentil · République Gabonaise</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Construction neuve</a></li>
+        <li><a href="#services">Rénovation & Réhabilitation</a></li>
+        <li><a href="#services">Travaux publics</a></li>
+        <li><a href="#services">Génie civil</a></li>
+        <li><a href="#services">Second œuvre</a></li>
+        <li><a href="#services">Maîtrise d'œuvre</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <address>
+        <p><a href="tel:+221656016893">+221 656 016 893</a></p>
+        <p><a href="mailto:contact@BTPConstruction.com">contact@BTPConstruction.com</a></p>
+        <p>Port-Gentil<br>République Gabonaise</p>
+      </address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BTP Construction. Tous droits réservés.</span>
+    <span>BTP & Construction · Gabon</span>
+  </div>
+</footer>
+
+</body>
+</html>
