@@ -111,9 +111,9 @@ export async function POST(request: NextRequest) {
       email: resolvedEmail,
       html_path: `/mockups/${filename}`,
       presence_type: presence_type || 'new',
-      existing_url: existing_url || null,
-      social_urls: social_facebook || null,
-      logo_path: logo_path || null,
+      existing_url: existing_url || undefined,
+      social_urls: social_facebook || undefined,
+      logo_path: logo_path || undefined,
     });
 
     return NextResponse.json({ id, html_path: `/mockups/${filename}` });
